@@ -1,0 +1,184 @@
+# ===== Configuración del servidor =====
+PORT=3000
+LOG_LEVEL=error
+NODE_ENV=development
+
+# ===== 360dialog API Configuration =====
+D360_API_KEY=qkiSHW1TTkf2tTCsXH8klnqUAK
+D360_API_BASE=https://waba-v2.360dialog.io
+
+# 360Dialog Hub - Para Flows y Templates
+D360_PARTNER_ID=srMmqpPA
+D360_PARTNER_API_KEY=qkiSHW1TTkf2tTCsXH8klnqUAK
+
+# WhatsApp Channel Info (Referencia)
+# Channel ID: igEz70CH
+# Phone: 573022753557
+# Business Account ID: T9YahRWA
+# WABA Channel External ID: 812973988574965
+# Namespace: 3d35752f_450b_4f38_96b1_4d1dc2ff657b
+
+# ===== AI Configuration =====
+AI_ENDPOINT=http://192.168.40.90:1234/v1/chat/completions
+AI_MODEL=qwen_qwen3-4b-thinking-2507
+AI_API_KEY=dev_ai_api_key_here
+IA_ENABLED=false
+
+# ===== Webhook Configuration =====
+# ⚠️  CONFIGURAR CON URLS REALES PARA PRODUCCIÓN
+NGROK_URL=https://1b3fb69c47a5.ngrok-free.app
+WEBHOOK_URL=https://tu-dominio-real.com/api/webhooks/360dialog
+WHATSAPP_VERIFY_TOKEN=tu_verify_token_real
+WEBHOOK_VERIFY_TOKEN=tu_verify_token_real
+WHATSAPP_WEBHOOK_SECRET=tu_webhook_secret_real
+DISABLE_WEBHOOK_VALIDATIONS=false
+
+# ===== 360dialog / WABA Account Details =====
+D360_WABA_ACCOUNT_ID=835384855703270
+D360_PHONE_NUMBER_ID=812973988574965
+D360_NAMESPACE=3d35752f_450b_4f38_96b1_4d1dc2ff657b
+D360_TIMEZONE_ID=33
+D360_FB_BUSINESS_MANAGER_ID=1435146196959060
+
+# ===== Database Configuration =====
+DATABASE_URL=sqlite:./data/chatbot.db
+DATABASE_TYPE=sqlite
+
+
+# ===== JWT Configuration =====
+JWT_SECRET=ChatBot_Enterprise_JWT_Secret_2024_Kx9#mP2$vL8@nQ5!wR7&tY4^uI6*oE3%aS1+dF0-gH9
+JWT_EXPIRES_IN=24h
+REFRESH_EXPIRES_IN=7d
+SESSION_SECRET=ChatBot_Enterprise_Session_Secret_2024
+
+# ===== Security Configuration =====
+BCRYPT_SALT_ROUNDS=10
+MAX_LOGIN_ATTEMPTS=5
+LOCKOUT_DURATION=1800000
+ADMIN_TOKEN=admin_secure_token_2024
+SECURITY_HEADERS_ENABLED=true
+CORS_ENABLED=true
+ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+
+# ===== Rate Limiting =====
+RATE_LIMIT_MAX=999999
+RATE_LIMIT_WINDOW=999999999
+RATE_LIMIT_SKIP_SUCCESSFUL_REQUESTS=true
+
+
+# ===== Monitoring & Analytics =====
+ENABLE_ANALYTICS=true
+ENABLE_MONITORING=true
+METRICS_ENDPOINT=/metrics
+
+# ===== Debug & Development =====
+DEBUG_MODE=true
+ENABLE_DEBUG_DASHBOARD=false
+DEBUG_DASHBOARD_PORT=3001
+
+# ===== Additional Environment Variables =====
+
+# Application Configuration
+APP_NAME=ChatBot Enterprise
+APP_ISSUER=ChatBot
+ADMIN_EMAIL=admin@chatbot.local
+ADMIN_PASSWORD=Admin123!@#
+
+# Health Monitoring
+HEALTH_MONITOR_ENABLED=true
+HEALTH_CHECK_INTERVAL=30000
+MEMORY_ALERT_THRESHOLD=0.85
+CPU_ALERT_THRESHOLD=0.80
+DISK_ALERT_THRESHOLD=0.90
+RESPONSE_TIME_THRESHOLD=5000
+ERROR_RATE_THRESHOLD=0.05
+HEALTH_RETENTION_PERIOD=86400000
+
+# Error Management
+ERROR_LOG_DIR=./data/logs
+ERROR_LOG_FILE=error.log
+MAX_ERROR_LOG_SIZE=10485760
+MAX_ERROR_LOG_FILES=5
+ERROR_NOTIFICATION_THRESHOLD=error
+ERROR_CONSOLE_OUTPUT=true
+ERROR_BUFFER_SIZE=100
+ERROR_FLUSH_INTERVAL=5000
+ERROR_METRICS_ENABLED=true
+ERROR_ALERT_THRESHOLD=10
+ERROR_MEMORY_THRESHOLD=104857600
+ERROR_PERFORMANCE_MONITORING=false
+ERROR_STRUCTURED_LOGGING=true
+
+# Contact Management
+MAX_CONTACTS=999999
+VALIDATE_PHONES=true
+DEFAULT_COUNTRY_CODE=+57
+
+# Context Management
+CONVERSATIONS_DATA_DIR=./data/conversaciones
+MAX_MESSAGES_PER_CONTEXT=100
+MAX_CONTEXT_AGE_DAYS=30
+RECENT_MESSAGES_COUNT=10
+AUTO_ROTATE_CONTEXT=true
+COMPRESS_OLD_CONTEXTS=false
+CONTEXT_CACHE_SIZE=50
+
+# Statistics
+STATS_AUTO_SAVE=true
+STATS_SAVE_INTERVAL=300
+STATS_RETENTION_DAYS=90
+TRACK_DETAILED_METRICS=true
+TRACK_PERFORMANCE=true
+TRACK_USER_BEHAVIOR=true
+STATS_ALERTS=true
+ERROR_THRESHOLD=10
+
+# WebSocket Configuration
+WS_PORT=8080
+WS_HOST=localhost
+WS_SSL_ENABLED=false
+WS_SSL_CERT=
+WS_SSL_KEY=
+WS_SSL_CA=
+WS_AUTH_ENABLED=false
+WS_AUTH_SECRET=default-secret
+WS_CLIENT_URL=ws://localhost:8080/ws
+
+# Security
+ENCRYPTION_KEY=dev-encryption-key-change-in-production
+JWT_REFRESH_SECRET=dev-jwt-refresh-secret-change-in-production
+SECRET_ENCRYPTION_KEY=dev-secret-encryption-key
+FRONTEND_URL=http://localhost:3000
+ADMIN_URL=http://localhost:3001
+
+# Rate Limiting
+RATE_LIMIT_WHITELIST=127.0.0.1
+
+# Debug Dashboard
+DEBUG_DASHBOARD_ENABLED=true
+DEBUG_DASHBOARD_HOST=localhost
+DEBUG_UPDATE_INTERVAL=5000
+DEBUG_MAX_LOG_ENTRIES=1000
+DEBUG_DASHBOARD_AUTH=false
+DEBUG_DASHBOARD_TOKEN=debug-token-123
+
+# Logging
+LOG_DIR=./logs
+LOG_FILE_PATH=./logs/app.log
+LOG_MAX_SIZE=5242880
+LOG_MAX_FILES=5
+UPLOADS_DIR=./public/uploads
+
+# Adapter Configuration
+ADAPTER_LOG_LEVEL=info
+METRICS_ENABLED=true
+METRICS_EXPORT_ENABLED=false
+ALERTS_ENABLED=false
+ALERT_EMAIL=
+ALERT_WEBHOOK=
+ALERT_SLACK_WEBHOOK=
+AUTH_ENABLED=false
+AUTH_SECRET=default-secret-change-in-production
+CORS_ORIGIN=*
+D360_WEBHOOK_URL=https://e4657f71ffe5.ngrok-free.app/api/webhooks/360dialog
+WEBHOOK_SECRET=your_webhook_secret_here

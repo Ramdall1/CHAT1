@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ChatBot Pro</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/design-system.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1a202c;
+        }
+
+        /* Asegurar que el sidebar sea clickeable */
+        .sidebar a {
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .dashboard-container {
+            display: flex;
+            overflow: hidden;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .page-subtitle {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-outline {
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: #64748b;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+
+        /* Stats Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #6366f1;
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .stat-title {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6366f1;
+            font-size: 18px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 8px;
+        }
+
+        .stat-footer {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        /* Conversations */
+        .conversations-list-dash {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .list-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .conversation-item {
+            padding: 16px;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .conversation-item:hover {
+            background: #f8fafc;
+        }
+
+        .conv-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .conv-info {
+            flex: 1;
+        }
+
+        .conv-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .conv-message {
+            font-size: 14px;
+            color: #64748b;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .conv-meta {
+            text-align: right;
+        }
+
+        .conv-time {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 4px;
+        }
+
+        .conv-badge {
+            background: #6366f1;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: #94a3b8;
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-comments"></i>
+                    <span>ChatBot Pro</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="/dashboard" class="menu-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/chat-live" class="menu-item">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Chat en Vivo</span>
+                </a>
+                <a href="/contacts" class="menu-item">
+                    <i class="fas fa-address-book"></i>
+                    <span>Contactos</span>
+                </a>
+                <a href="/campaigns" class="menu-item">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Campañas</span>
+                </a>
+            </nav>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <div class="header-title">
+                    <h1><i class="fas fa-chart-line"></i> Dashboard</h1>
+                    <p>Vista general de tu chatbot</p>
+                </div>
+                <div class="header-actions">
+                    <a href="/chat-live" class="btn btn-primary">
+                        <i class="fas fa-comments"></i> Ir al Chat
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Conversaciones Activas</span>
+                        <div class="stat-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="activeConversations">0</div>
+                    <div class="stat-footer">Conversaciones en curso</div>
+                </div>
+
+                <div class="stat-card" style="border-left-color: #10b981;">
+                    <div class="stat-header">
+                        <span class="stat-title">Mensajes Hoy</span>
+                        <div class="stat-icon" style="background: #f0fdf4; color: #10b981;">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="messagesToday">0</div>
+                    <div class="stat-footer">Mensajes recibidos hoy</div>
+                </div>
+
+                <div class="stat-card" style="border-left-color: #f59e0b;">
+                    <div class="stat-header">
+                        <span class="stat-title">Total Contactos</span>
+                        <div class="stat-icon" style="background: #fffbeb; color: #f59e0b;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="totalContacts">0</div>
+                    <div class="stat-footer">Contactos registrados</div>
+                </div>
+            </div>
+
+            <!-- Conversations -->
+            <div class="conversations-list-dash">
+                <div class="list-header">
+                    <h2 class="list-title">Conversaciones Recientes</h2>
+                    <a href="/chat-live" class="btn btn-sm btn-outline">Ver todas</a>
+                </div>
+                <div id="conversationsList">
+                    <div class="empty-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Cargando...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/sidebar.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadDashboardData();
+        });
+
+        async function loadDashboardData() {
+            try {
+                const response = await fetch('/api/chat-live/conversations?limit=50');
+                const data = await response.json();
+                
+                if (data.success && data.data) {
+                    const conversations = data.data;
+                    
+                    document.getElementById('activeConversations').textContent = conversations.length;
+                    document.getElementById('totalContacts').textContent = conversations.length;
+                    
+                    const today = new Date().setHours(0, 0, 0, 0);
+                    const todayMessages = conversations.filter(c => {
+                        const msgDate = new Date(c.lastMessageTime || c.createdAt).setHours(0, 0, 0, 0);
+                        return msgDate === today;
+                    }).length;
+                    document.getElementById('messagesToday').textContent = todayMessages;
+                    
+                    renderConversations(conversations.slice(0, 10));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function renderConversations(conversations) {
+            const container = document.getElementById('conversationsList');
+            
+            if (conversations.length === 0) {
+                container.innerHTML = '<div class="empty-state"><i class="fas fa-comments"></i><p>No hay conversaciones</p></div>';
+                return;
+            }
+            
+            container.innerHTML = conversations.map(conv => {
+                const initial = (conv.name || conv.phone || '?')[0].toUpperCase();
+                const time = formatTime(conv.lastMessageTime || conv.createdAt);
+                const unread = conv.unreadCount || 0;
+                
+                return `
+                    <div class="conversation-item" onclick="location.href='/chat-live'">
+                        <div class="conv-avatar">${initial}</div>
+                        <div class="conv-info">
+                            <div class="conv-name">${conv.name || conv.phone}</div>
+                            <div class="conv-message">${formatLastMessage(conv.lastMessage) || 'Sin mensajes'}</div>
+                        </div>
+                        <div class="conv-meta">
+                            <div class="conv-time">${time}</div>
+                            ${unread > 0 ? `<span class="conv-badge">${unread}</span>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function formatTime(timestamp) {
+            if (!timestamp) return '—';
+            
+            // Manejar diferentes formatos de timestamp
+            let date;
+            if (typeof timestamp === 'string') {
+                // Si tiene espacio, es formato "YYYY-MM-DD HH:MM:SS"
+                if (timestamp.includes(' ')) {
+                    const [datePart, timePart] = timestamp.split(' ');
+                    date = new Date(`${datePart}T${timePart}Z`); // Añadir Z para UTC
+                } else {
+                    date = new Date(timestamp);
+                }
+            } else if (timestamp instanceof Date) {
+                date = timestamp;
+            } else {
+                return '—';
+            }
+            
+            if (isNaN(date.getTime())) return '—';
+            
+            const now = new Date();
+            const diffMs = now - date;
+            const diffSeconds = Math.floor(diffMs / 1000);
+            const diffMinutes = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+            
+            // Formato de tiempo relativo
+            if (diffMs < 0) return 'Ahora';
+            if (diffSeconds < 60) return 'Ahora';
+            if (diffMinutes < 60) return `${diffMinutes}m`;
+            if (diffHours < 24) return `${diffHours}h`;
+            if (diffDays < 7) return `${diffDays}d`;
+            return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' });
+        }
+        
+        function formatLastMessage(message) {
+            if (!message) return 'Sin mensajes';
+            
+            // Detectar tipos específicos de mensajes multimedia
+            if (message.startsWith('Mensaje multimedia') || message.includes('<i class="fas fa-')) {
+                if (message.includes('fa-image')) {
+                    return '🖼️ Imagen';
+                } else if (message.includes('fa-video')) {
+                    return '🎥 Video';
+                } else if (message.includes('fa-microphone') || message.includes('fa-audio')) {
+                    return '🎤 Audio';
+                } else if (message.includes('fa-file') || message.includes('fa-document')) {
+                    return '📄 Documento';
+                } else if (message.includes('fa-map-marker')) {
+                    return '📍 Ubicación';
+                } else {
+                    return '📎 Archivo adjunto';
+                }
+            }
+            
+            // Limitar la longitud del mensaje para la vista previa
+            const maxLength = 30;
+            if (message.length > maxLength) {
+                return message.substring(0, maxLength) + '...';
+            }
+            
+            return message;
+        }
+        
+        // Función para actualizar el contador de mensajes no leídos
+        // Esta función puede ser llamada desde el chat-live.js
+        window.updateUnreadCount = function(phone, count) {
+            console.log(`Actualizando contador para ${phone}: ${count}`);
+            const conversations = document.querySelectorAll('.conversation-item');
+            conversations.forEach(conv => {
+                if (conv.querySelector('.conv-name').textContent.includes(phone)) {
+                    const badge = conv.querySelector('.conv-badge');
+                    if (count > 0) {
+                        if (badge) {
+                            badge.textContent = count;
+                        } else {
+                            const meta = conv.querySelector('.conv-meta');
+                            const badgeEl = document.createElement('span');
+                            badgeEl.className = 'conv-badge';
+                            badgeEl.textContent = count;
+                            meta.appendChild(badgeEl);
+                        }
+                    } else if (badge) {
+                        badge.remove();
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

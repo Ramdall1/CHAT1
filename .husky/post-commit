@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Obtener información del commit
+COMMIT_HASH=$(git rev-parse HEAD)
+COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+AUTHOR=$(git log -1 --pretty=%an)
+BRANCH=$(git branch --show-current)
+
+echo "✅ Commit exitoso:"
+echo "   Hash: $COMMIT_HASH"
+echo "   Autor: $AUTHOR"
+echo "   Rama: $BRANCH"
+echo "   Mensaje: $COMMIT_MESSAGE"
+
+# Log del commit para auditoría
+echo "$(date): [$BRANCH] $COMMIT_HASH - $AUTHOR: $COMMIT_MESSAGE" >> .git/commit-log.txt
+
+# Opcional: Notificar a webhook si está configurado
+if [ -n "$COMMIT_WEBHOOK_URL" ]; then
+  curl -X POST "$COMMIT_WEBHOOK_URL" \
+    -H "Content-Type: application/json" \
+    -d "{
+      \"commit\": \"$COMMIT_HASH\",
+      \"message\": \"$COMMIT_MESSAGE\",
+      \"author\": \"$AUTHOR\",
+      \"branch\": \"$BRANCH\",
+      \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"
+    }" 2>/dev/null || true
+fi

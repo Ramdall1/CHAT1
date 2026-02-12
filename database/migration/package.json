@@ -1,0 +1,43 @@
+{
+  "name": "chatbot-migration",
+  "version": "1.0.0",
+  "description": "Scripts de migración de MongoDB a PostgreSQL para ChatBot Enterprise",
+  "main": "migrate.js",
+  "scripts": {
+    "migrate": "node migrate.js",
+    "migrate:dry-run": "node migrate.js --dry-run",
+    "migrate:users": "node migrate.js --collection=users",
+    "migrate:contacts": "node migrate.js --collection=contacts",
+    "migrate:conversations": "node migrate.js --collection=conversations",
+    "migrate:messages": "node migrate.js --collection=messages",
+    "migrate:templates": "node migrate.js --collection=templates",
+    "validate": "node validate-migration.js",
+    "rollback": "node rollback.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "mongodb": "^6.3.0",
+    "pg": "^8.11.3",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "progress": "^2.0.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "@types/node": "^20.10.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "migration",
+    "mongodb",
+    "postgresql",
+    "chatbot",
+    "database"
+  ],
+  "author": "ChatBot Enterprise Team",
+  "license": "MIT"
+}

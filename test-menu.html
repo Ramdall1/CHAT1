@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Menu</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            padding: 40px;
+        }
+
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            border-top: 1px solid #e9ecef;
+            background: white;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* Input Menu Styles */
+        .input-menu-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .btn-menu-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .btn-menu-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-menu-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .input-menu {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 0;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 8px 0;
+            min-width: 200px;
+            z-index: 2000;
+            flex-direction: column;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 12px 16px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #374151;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .menu-item:hover {
+            background: #f3f4f6;
+            color: #6366f1;
+        }
+
+        .menu-item:active {
+            background: #e5e7eb;
+        }
+
+        .menu-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        #messageInput {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        #messageInput:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        #sendButton {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #sendButton:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+
+        .info {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            color: #0369a1;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Test del Menú</h1>
+        <div class="info">
+            Haz clic en el botón "+" para ver el menú desplegable
+        </div>
+
+        <div class="chat-input-container">
+            <div class="chat-input">
+                <div class="input-menu-wrapper">
+                    <button id="menuToggleBtn" class="btn-menu-toggle" title="Menú de opciones">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="input-menu" id="inputMenu" style="display: none;">
+                        <button class="menu-item" id="templatesBtn" data-action="templates">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Plantillas</span>
+                        </button>
+                        <button class="menu-item" id="imagesBtn" data-action="images">
+                            <i class="fas fa-image"></i>
+                            <span>Imágenes</span>
+                        </button>
+                        <button class="menu-item" id="videosBtn" data-action="videos">
+                            <i class="fas fa-video"></i>
+                            <span>Videos</span>
+                        </button>
+                        <button class="menu-item" id="documentsBtn" data-action="documents">
+                            <i class="fas fa-file"></i>
+                            <span>Documentos</span>
+                        </button>
+                        <button class="menu-item" id="emojisBtn" data-action="emojis">
+                            <i class="fas fa-smile"></i>
+                            <span>Emojis</span>
+                        </button>
+                    </div>
+                </div>
+                <input type="text" id="messageInput" placeholder="Escribe tu mensaje...">
+                <button id="sendButton">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggleBtn = document.getElementById('menuToggleBtn');
+            const inputMenu = document.getElementById('inputMenu');
+            const menuItems = document.querySelectorAll('.menu-item');
+
+            console.log('✅ DOM Cargado');
+            console.log('menuToggleBtn:', menuToggleBtn);
+            console.log('inputMenu:', inputMenu);
+
+            // Toggle del menú
+            menuToggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isVisible = inputMenu.style.display !== 'none';
+                inputMenu.style.display = isVisible ? 'none' : 'flex';
+                inputMenu.style.flexDirection = 'column';
+                console.log('Menu toggled:', inputMenu.style.display);
+            });
+
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.input-menu-wrapper')) {
+                    inputMenu.style.display = 'none';
+                }
+            });
+
+            // Eventos de items del menú
+            menuItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const action = item.dataset.action;
+                    inputMenu.style.display = 'none';
+                    console.log('Acción seleccionada:', action);
+                    alert('Seleccionaste: ' + action);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

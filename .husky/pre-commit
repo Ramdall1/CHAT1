@@ -1,0 +1,43 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Ejecutando validaciones pre-commit..."
+
+# Verificar formato de código
+echo "📝 Verificando formato con Prettier..."
+npm run format:check || {
+  echo "❌ Errores de formato detectados. Ejecuta 'npm run format' para corregir."
+  exit 1
+}
+
+# Verificar linting
+echo "🔍 Ejecutando ESLint..."
+npm run lint || {
+  echo "❌ Errores de linting detectados. Ejecuta 'npm run lint:fix' para corregir."
+  exit 1
+}
+
+# Ejecutar tests
+echo "🧪 Ejecutando tests..."
+npm test || {
+  echo "❌ Tests fallaron. Corrige los errores antes de hacer commit."
+  exit 1
+}
+
+# Verificar que no hay archivos .env en el commit
+if git diff --cached --name-only | grep -E "\.env$"; then
+  echo "❌ Archivo .env detectado en el commit. Remuévelo del staging area."
+  exit 1
+fi
+
+# Verificar que no hay console.log en archivos de producción
+if git diff --cached --name-only | grep -E "\.(js|ts)$" | xargs grep -l "console\.log" 2>/dev/null; then
+  echo "⚠️  console.log detectado en archivos. Considera usar el sistema de logging."
+  echo "   Continúa? (y/N)"
+  read -r response
+  if [[ ! "$response" =~ ^[Yy]$ ]]; then
+    exit 1
+  fi
+fi
+
+echo "✅ Todas las validaciones pasaron. Procediendo con el commit..."

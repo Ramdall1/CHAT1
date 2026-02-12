@@ -1,0 +1,33 @@
+/**
+ * Babel Configuration - ChatBot Enterprise
+ *
+ * Configuración principal de Babel para el proyecto
+ */
+
+export default {
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        targets: {
+          node: '18'
+        },
+        modules: false
+      }
+    ]
+  ],
+  env: {
+    test: {
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            targets: {
+              node: 'current'
+            }
+          }
+        ]
+      ]
+    }
+  }
+};

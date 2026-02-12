@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campañas - ChatBot</title>
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/design-system.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Asegurar que el sidebar sea clickeable */
+        .sidebar a {
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .campaigns-container {
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .campaigns-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .campaigns-header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .btn-outline {
+            background: white;
+            color: #6b7280;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-outline:hover {
+            background: #f9fafb;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+
+        .campaigns-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .stat-card-title {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .stat-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .stat-card-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .campaigns-filters {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #374151;
+            background: white;
+            cursor: pointer;
+        }
+
+        .campaigns-table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .campaigns-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .campaigns-table thead {
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .campaigns-table th {
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .campaigns-table td {
+            padding: 16px;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .campaigns-table tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        .campaign-status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .status-draft {
+            background: #e5e7eb;
+            color: #4b5563;
+        }
+
+        .status-scheduled {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-sending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-sent {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-failed {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .campaign-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 230px;
+            right: 0;
+            width: calc(100% - 230px);
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            width: 95%;
+            max-width: calc(100vw - 280px);
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .modal-body {
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 32px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .campaign-form-section {
+            min-width: 0;
+        }
+
+        .campaign-preview-section {
+            background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%);
+            border-radius: 12px;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #e5e7eb;
+        }
+
+        .preview-title {
+            font-size: 12px;
+            font-weight: 500;
+            color: #64748b;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .phone-mockup {
+            width: 320px;
+            height: 640px;
+            background: #000;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 32px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #000;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        .whatsapp-header {
+            background: #075E54;
+            color: white;
+            padding: 50px 16px 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .whatsapp-header-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #128C7E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .whatsapp-header-info {
+            flex: 1;
+        }
+
+        .whatsapp-header-name {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .whatsapp-header-status {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .whatsapp-header-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+        }
+
+        .whatsapp-chat {
+            flex: 1;
+            background: #e5ddd5;
+            padding: 20px;
+            overflow-y: auto;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><defs><pattern id="whatsapp-bg" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0 20 Q10 10, 20 20 T40 20" stroke="rgba(0,0,0,0.03)" fill="none"/></pattern></defs><rect width="400" height="400" fill="url(%23whatsapp-bg)"/></svg>');
+        }
+
+        .whatsapp-input-bar {
+            background: #f0f0f0;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .whatsapp-input {
+            flex: 1;
+            background: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 16px;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .whatsapp-send-btn {
+            width: 44px;
+            height: 44px;
+            background: #25D366;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .message-bubble {
+            background: #dcf8c6;
+            border-radius: 8px;
+            padding: 7px 10px;
+            max-width: 240px;
+            margin-left: auto;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+            position: relative;
+            word-wrap: break-word;
+            margin-bottom: 8px;
+        }
+
+        .message-bubble::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 10px solid #dcf8c6;
+            border-top: 6px solid transparent;
+            border-bottom: 4px solid transparent;
+        }
+
+        .message-bubble-text {
+            font-size: 14.2px;
+            line-height: 1.4;
+            color: #303030;
+            white-space: pre-wrap;
+            margin-bottom: 2px;
+        }
+
+        .message-bubble-time {
+            font-size: 11px;
+            color: #64748b;
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        .preview-placeholder {
+            color: #9ca3af;
+            font-size: 14px;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .modal-footer {
+            padding: 20px 24px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            background: #fafafa;
+            flex-shrink: 0;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #1f2937;
+            background: #fff;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 70px;
+            font-family: inherit;
+            line-height: 1.5;
+        }
+
+        #campaignMessage {
+            min-height: 100px;
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 4px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .header-media-section {
+            margin-bottom: 16px;
+        }
+
+        .header-media-section label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .media-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .media-btn {
+            aspect-ratio: 1;
+            border: 2px dashed #d1d5db;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 12px;
+            position: relative;
+        }
+
+        .media-btn[data-tooltip]:hover::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f2937;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            white-space: nowrap;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .media-btn[data-tooltip]:hover::after {
+            content: '';
+            position: absolute;
+            bottom: calc(100% + 2px);
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .media-btn:hover {
+            border-color: #6366f1;
+            background: #f9fafb;
+        }
+
+        .media-btn.active {
+            border-color: #6366f1;
+            background: #eef2ff;
+            border-style: solid;
+        }
+
+        .media-btn i {
+            font-size: 24px;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
+
+        .media-btn.active i {
+            color: #6366f1;
+        }
+
+        .media-btn span {
+            font-size: 11px;
+            color: #6b7280;
+            text-align: center;
+        }
+
+        .media-btn.active span {
+            color: #6366f1;
+            font-weight: 500;
+        }
+
+        .media-btn input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+        }
+
+        .selected-file-info {
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #15803d;
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .selected-file-info.show {
+            display: flex;
+        }
+
+        .selected-file-info i {
+            color: #22c55e;
+        }
+
+        .remove-file-btn {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: #dc2626;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .header-text-input-wrapper {
+            margin-top: 12px;
+            display: none;
+            animation: slideDown 0.2s ease-out;
+        }
+
+        .header-text-input-wrapper.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-text-input-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 4px;
+        }
+
+        .header-text-input {
+            flex: 1;
+            border: none;
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #1f2937;
+            outline: none;
+        }
+
+        .header-text-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .remove-header-text-btn {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .remove-header-text-btn:hover {
+            color: #dc2626;
+        }
+
+        .recipients-filter {
+            background: #f9fafb;
+            padding: 14px;
+            border-radius: 6px;
+            margin-bottom: 14px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .recipients-filter h4 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .recipients-preview {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+
+        .recipients-count {
+            font-size: 14px;
+            font-weight: 600;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+
+        .recipients-list {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .recipient-item {
+            padding: 6px 0;
+            font-size: 13px;
+            color: #6b7280;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .recipient-item:last-child {
+            border-bottom: none;
+        }
+
+        .btn-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            color: #6b7280;
+            font-size: 18px;
+        }
+
+        .btn-icon:hover {
+            color: #374151;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6b7280;
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            margin-bottom: 20px;
+            color: #d1d5db;
+        }
+
+        .empty-state h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .pagination-container {
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .pagination-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .page-number {
+            padding: 6px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: white;
+            color: #374151;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .page-number.active {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .loading-spinner {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .loading-spinner i {
+            font-size: 40px;
+            color: #6366f1;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-comments"></i>
+                    <span>ChatBot Pro</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="/dashboard" class="menu-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/chat-live" class="menu-item">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Chat en Vivo</span>
+                </a>
+                <a href="/contacts" class="menu-item">
+                    <i class="fas fa-address-book"></i>
+                    <span>Contactos</span>
+                </a>
+                <a href="/campaigns" class="menu-item active">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Campañas</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="campaigns-container">
+                <!-- Header -->
+                <div class="campaigns-header">
+                    <div>
+                        <h1>📢 Campañas de Difusión</h1>
+                        <p style="color: #6b7280; font-size: 14px; margin-top: 4px;">
+                            Crea y gestiona campañas de mensajería masiva
+                        </p>
+                    </div>
+                    <button class="btn btn-primary" id="createCampaignBtn">
+                        <i class="fas fa-plus"></i>
+                        Nueva Campaña
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="campaigns-stats">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-card-title">Total Campañas</span>
+                            <div class="stat-card-icon" style="background: #ede9fe; color: #7c3aed;">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card-value" id="totalCampaigns">0</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-card-title">Enviadas</span>
+                            <div class="stat-card-icon" style="background: #dcfce7; color: #16a34a;">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card-value" id="sentCampaigns">0</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-card-title">Programadas</span>
+                            <div class="stat-card-icon" style="background: #dbeafe; color: #2563eb;">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card-value" id="scheduledCampaigns">0</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-card-title">Borradores</span>
+                            <div class="stat-card-icon" style="background: #f3f4f6; color: #6b7280;">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                        </div>
+                        <div class="stat-card-value" id="draftCampaigns">0</div>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="campaigns-filters">
+                    <label style="font-size: 14px; font-weight: 500; color: #374151;">Filtrar por:</label>
+                    <select class="filter-select" id="statusFilter">
+                        <option value="">Todos los estados</option>
+                        <option value="draft">Borradores</option>
+                        <option value="scheduled">Programadas</option>
+                        <option value="sending">Enviando</option>
+                        <option value="sent">Enviadas</option>
+                        <option value="failed">Fallidas</option>
+                    </select>
+                </div>
+
+                <!-- Table -->
+                <div class="campaigns-table-container">
+                    <table class="campaigns-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Destinatarios</th>
+                                <th>Enviados</th>
+                                <th>Entregados</th>
+                                <th>Estado</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="campaignsTableBody">
+                            <tr>
+                                <td colspan="7" class="empty-state">
+                                    <i class="fas fa-bullhorn"></i>
+                                    <h3>No hay campañas</h3>
+                                    <p>Crea tu primera campaña para comenzar</p>
+                                    <button class="btn btn-primary" onclick="document.getElementById('createCampaignBtn').click()">
+                                        <i class="fas fa-plus"></i>
+                                        Crear Campaña
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination-container" id="paginationContainer" style="display: none;">
+                        <div class="pagination-info">
+                            Mostrando <span id="paginationStart">0</span> - <span id="paginationEnd">0</span> de <span id="paginationTotal">0</span> campañas
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="btn btn-sm btn-outline" id="prevPage" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="page-numbers" id="pageNumbers"></div>
+                            <button class="btn btn-sm btn-outline" id="nextPage" disabled>
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create/Edit Campaign Modal -->
+    <div class="modal" id="campaignModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Enviar mensaje</h3>
+                <button class="btn-icon" id="closeCampaignModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario -->
+                <div class="campaign-form-section">
+                <form id="campaignForm">
+                    <div class="form-group">
+                        <label for="campaignName">Nombre de la Campaña *</label>
+                        <input type="text" id="campaignName" required placeholder="Ej: Promoción Black Friday">
+                    </div>
+
+                    <!-- Selector de Tipo: Plantilla o Flow -->
+                    <div class="form-group">
+                        <label for="templateType">Tipo de Contenido</label>
+                        <select id="templateType">
+                            <option value="">Ninguno</option>
+                            <option value="template">Plantilla</option>
+                            <option value="flow">Flow</option>
+                        </select>
+                    </div>
+
+                    <!-- Selector de Plantilla/Flow -->
+                    <div class="form-group" id="templateSelectorGroup" style="display: none;">
+                        <label id="templateSelectorLabel">Seleccionar Plantilla Actual</label>
+                        <div style="display: flex; gap: 10px; align-items: flex-end;">
+                            <select id="templateSelector" style="flex: 1;">
+                                <option value="">Seleccionar Plantilla Actual</option>
+                            </select>
+                            <button type="button" id="mapVariablesBtn" class="btn btn-outline" style="white-space: nowrap;">
+                                <i class="fas fa-map"></i> Mapear Variables
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Mapeo de Variables Preview -->
+                    <div class="form-group" id="variableMappingPreview" style="display: none; background: #f0fdf4; padding: 12px; border-radius: 6px; border: 1px solid #86efac;">
+                        <label style="font-weight: 600; color: #15803d; margin-bottom: 8px;">✅ Mapeo de Variables:</label>
+                        <div id="mappingList" style="font-size: 13px; color: #15803d;"></div>
+                    </div>
+
+                    <small id="templateSelectorHelp" style="display: none; color: #10b981;">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="templateSelectorStatus"></span>
+                    </small>
+
+                    <!-- Encabezado con Medios -->
+                    <div class="header-media-section" id="headerMediaSection">
+                        <label>Encabezado <span style="color: #9ca3af;">Opcional</span></label>
+                        <div class="media-buttons">
+                            <button type="button" class="media-btn" id="mediaTextBtn" 
+                                    data-tooltip="Encabezado de texto, hasta 40 caracteres">
+                                <i class="fas fa-align-left"></i>
+                            </button>
+                            <button type="button" class="media-btn" id="mediaImageBtn" 
+                                    data-tooltip="Encabezado de imagen, JPG, JPEG o PNG, hasta 5 MB">
+                                <i class="far fa-image"></i>
+                                <input type="file" id="mediaImageInput" accept="image/jpeg,image/jpg,image/png" style="display: none;">
+                            </button>
+                            <button type="button" class="media-btn" id="mediaVideoBtn" 
+                                    data-tooltip="Encabezado de video, mp4, 3GPP, hasta 16 MB">
+                                <i class="far fa-play-circle"></i>
+                                <input type="file" id="mediaVideoInput" accept="video/mp4,video/3gpp" style="display: none;">
+                            </button>
+                            <button type="button" class="media-btn" id="mediaFileBtn" 
+                                    data-tooltip="Encabezado de archivo, PDF, hasta 50MB">
+                                <i class="fas fa-paperclip"></i>
+                                <input type="file" id="mediaFileInput" accept="application/pdf" style="display: none;">
+                            </button>
+                        </div>
+                        <div class="header-text-input-wrapper" id="headerTextInputWrapper" style="display: none;">
+                            <div class="header-text-input-container">
+                                <input type="text" 
+                                       class="header-text-input" 
+                                       id="headerTextInput" 
+                                       placeholder="Introducir encabezado de plantilla"
+                                       maxlength="40">
+                                <button type="button" class="remove-header-text-btn" id="removeHeaderTextBtn">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="selected-file-info" id="selectedFileInfo" style="display: none;">
+                            <i class="fas fa-check-circle"></i>
+                            <span id="selectedFileName">archivo.pdf</span>
+                            <button type="button" class="remove-file-btn" id="removeFileBtn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="campaignMessage">Mensaje *</label>
+                        <div style="display: flex; gap: 10px; align-items: flex-start;">
+                            <textarea id="campaignMessage" required placeholder="Escribe el mensaje que se enviará a los destinatarios" style="flex: 1;"></textarea>
+                            <button type="button" id="mapCustomVariablesBtn" class="btn btn-outline" style="white-space: nowrap; height: fit-content; margin-top: 2px;">
+                                <i class="fas fa-map"></i> Mapear Variables
+                            </button>
+                        </div>
+                        <small>El mensaje se enviará tal como lo escribas aquí. Usa {{1}}, {{2}}, etc. para variables</small>
+                    </div>
+
+                    <!-- Preview del Mapeo de Variables Personalizado -->
+                    <div class="form-group" id="customVariableMappingPreview" style="display: none; background: #f0fdf4; padding: 12px; border-radius: 6px; border: 1px solid #86efac;">
+                        <label style="font-weight: 600; color: #15803d; margin-bottom: 8px;">✅ Mapeo de Variables:</label>
+                        <div id="customMappingList" style="font-size: 13px; color: #15803d;"></div>
+                    </div>
+
+                    <!-- Pie de página -->
+                    <div class="form-group">
+                        <label for="footerText">Pie de página <span style="color: #9ca3af;">Opcional</span></label>
+                        <input type="text" id="footerText" placeholder="Texto del pie de página" maxlength="60">
+                    </div>
+
+                    <!-- Botón -->
+                    <div class="form-group">
+                        <label>Botón <span style="color: #9ca3af;">Opcional</span> <i class="fas fa-info-circle" style="color: #9ca3af; font-size: 12px;" title="Agrega botones interactivos a tu mensaje"></i></label>
+                        <select id="buttonType">
+                            <option value="">Seleccionar Tipo De Botón</option>
+                            <option value="quick_reply">Quick Reply - Respuesta Rápida (Máx. 10)</option>
+                            <option value="url">URL Button - Botón de Enlace (Máx. 2)</option>
+                            <option value="phone">Phone Button - Botón de Teléfono (Máx. 1)</option>
+                        </select>
+                        <small>Máximo 10 botones en total combinando todos los tipos</small>
+                    </div>
+
+                    <!-- Configuración de Botones -->
+                    <div id="buttonConfigContainer" style="display: none;">
+                        <!-- Quick Reply -->
+                        <div id="config_quick_reply" style="display: none;">
+                            <input type="text" id="quick_reply_text" placeholder="Texto del botón (máx 25)" maxlength="25" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;">
+                        </div>
+
+                        <!-- URL Button -->
+                        <div id="config_url" style="display: none; display: flex; flex-direction: column; gap: 8px;">
+                            <input type="text" id="url_text" placeholder="Nombre del botón (máx 25)" maxlength="25" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;">
+                            <input type="text" id="url_value" placeholder="URL (máx 2000)" maxlength="2000" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;">
+                            <input type="text" id="url_example" placeholder="Valor ejemplo para variable (opcional)" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;">
+                        </div>
+
+                        <!-- Phone Button -->
+                        <div id="config_phone" style="display: none;">
+                            <input type="tel" id="phone_value" placeholder="Número de teléfono (máx 25)" maxlength="25" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;">
+                        </div>
+                    </div>
+
+                    <!-- Lista de Botones Agregados -->
+                    <div id="addedButtonsList" style="margin-top: 16px; display: none;">
+                        <label style="font-size: 12px; font-weight: 600; color: #1f2937; display: block; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            ✓ Botones Agregados
+                        </label>
+                        <div id="buttonsContainer" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Categoría del Mensaje <span style="color: #9ca3af;">Opcional</span></label>
+                        <select id="messageCategory">
+                            <option value="">Seleccionar Categoría Del Mensaje</option>
+                            <option value="MARKETING">MARKETING - Promociones y campañas</option>
+                            <option value="UTILITY">UTILITY - Notificaciones transaccionales</option>
+                            <option value="AUTHENTICATION">AUTHENTICATION - Verificación y autenticación</option>
+                        </select>
+                        <small>La categoría debe coincidir con el tipo de plantilla aprobada</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Idioma del Mensaje <span style="color: #9ca3af;">Opcional</span></label>
+                        <select id="messageLanguage">
+                            <option value="">Seleccionar idioma del mensaje</option>
+                            <!-- Español -->
+                            <option value="es">🇪🇸 Español (es)</option>
+                            <option value="es_MX">🇲🇽 Español México (es_MX)</option>
+                            <option value="es_ES">🇪🇸 Español España (es_ES)</option>
+                            <option value="es_AR">🇦🇷 Español Argentina (es_AR)</option>
+                            <option value="es_CO">🇨🇴 Español Colombia (es_CO)</option>
+                            <option value="es_CL">🇨🇱 Español Chile (es_CL)</option>
+                            <option value="es_PE">🇵🇪 Español Perú (es_PE)</option>
+                            <option value="es_VE">🇻🇪 Español Venezuela (es_VE)</option>
+                            <!-- English -->
+                            <option value="en_US">🇺🇸 English US (en_US)</option>
+                            <option value="en_GB">🇬🇧 English UK (en_GB)</option>
+                            <option value="en_CA">🇨🇦 English Canada (en_CA)</option>
+                            <option value="en_AU">🇦🇺 English Australia (en_AU)</option>
+                            <option value="en_IN">🇮🇳 English India (en_IN)</option>
+                            <!-- Português -->
+                            <option value="pt_BR">🇧🇷 Português Brasil (pt_BR)</option>
+                            <option value="pt_PT">🇵🇹 Português Portugal (pt_PT)</option>
+                            <!-- Français -->
+                            <option value="fr">🇫🇷 Français (fr)</option>
+                            <option value="fr_CA">🇨🇦 Français Canada (fr_CA)</option>
+                            <!-- Deutsch -->
+                            <option value="de">🇩🇪 Deutsch (de)</option>
+                            <option value="de_AT">🇦🇹 Deutsch Austria (de_AT)</option>
+                            <!-- Italiano -->
+                            <option value="it">🇮🇹 Italiano (it)</option>
+                            <!-- Holandés -->
+                            <option value="nl">🇳🇱 Nederlands (nl)</option>
+                            <!-- Sueco -->
+                            <option value="sv">🇸🇪 Svenska (sv)</option>
+                            <!-- Noruego -->
+                            <option value="no">🇳🇴 Norsk (no)</option>
+                            <!-- Danés -->
+                            <option value="da">🇩🇰 Dansk (da)</option>
+                            <!-- Finlandés -->
+                            <option value="fi">🇫🇮 Suomi (fi)</option>
+                            <!-- Polaco -->
+                            <option value="pl">🇵🇱 Polski (pl)</option>
+                            <!-- Ruso -->
+                            <option value="ru">🇷🇺 Русский (ru)</option>
+                            <!-- Ucraniano -->
+                            <option value="uk">🇺🇦 Українська (uk)</option>
+                            <!-- Turco -->
+                            <option value="tr">🇹🇷 Türkçe (tr)</option>
+                            <!-- Árabe -->
+                            <option value="ar">🇸🇦 العربية (ar)</option>
+                            <option value="ar_AE">🇦🇪 العربية الإمارات (ar_AE)</option>
+                            <!-- Hebreo -->
+                            <option value="he">🇮🇱 עברית (he)</option>
+                            <!-- Persa -->
+                            <option value="fa">🇮🇷 فارسی (fa)</option>
+                            <!-- Chino -->
+                            <option value="zh_CN">🇨🇳 中文 (简体) (zh_CN)</option>
+                            <option value="zh_TW">🇹🇼 中文 (繁體) (zh_TW)</option>
+                            <!-- Japonés -->
+                            <option value="ja">🇯🇵 日本語 (ja)</option>
+                            <!-- Coreano -->
+                            <option value="ko">🇰🇷 한국어 (ko)</option>
+                            <!-- Tailandés -->
+                            <option value="th">🇹🇭 ไทย (th)</option>
+                            <!-- Vietnamita -->
+                            <option value="vi">🇻🇳 Tiếng Việt (vi)</option>
+                            <!-- Indonesio -->
+                            <option value="id">🇮🇩 Bahasa Indonesia (id)</option>
+                            <!-- Malayo -->
+                            <option value="ms">🇲🇾 Bahasa Melayu (ms)</option>
+                            <!-- Filipino -->
+                            <option value="fil">🇵🇭 Filipino (fil)</option>
+                            <!-- Hindi -->
+                            <option value="hi">🇮🇳 हिन्दी (hi)</option>
+                            <!-- Bengalí -->
+                            <option value="bn">🇧🇩 বাংলা (bn)</option>
+                            <!-- Griego -->
+                            <option value="el">🇬🇷 Ελληνικά (el)</option>
+                            <!-- Checo -->
+                            <option value="cs">🇨🇿 Čeština (cs)</option>
+                            <!-- Eslovaco -->
+                            <option value="sk">🇸🇰 Slovenčina (sk)</option>
+                            <!-- Húngaro -->
+                            <option value="hu">🇭🇺 Magyar (hu)</option>
+                            <!-- Rumano -->
+                            <option value="ro">🇷🇴 Română (ro)</option>
+                            <!-- Búlgaro -->
+                            <option value="bg">🇧🇬 Български (bg)</option>
+                            <!-- Croata -->
+                            <option value="hr">🇭🇷 Hrvatski (hr)</option>
+                            <!-- Serbio -->
+                            <option value="sr">🇷🇸 Српски (sr)</option>
+                            <!-- Esloveno -->
+                            <option value="sl">🇸🇮 Slovenščina (sl)</option>
+                        </select>
+                        <small>Debe coincidir con el idioma de tu plantilla aprobada</small>
+                    </div>
+
+                    <div class="recipients-filter">
+                        <h4>🎯 Seleccionar Destinatarios</h4>
+                        <div class="filter-row">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="filterSearch">Búsqueda</label>
+                                <input type="text" id="filterSearch" placeholder="Nombre o teléfono">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="filterStatus">Estado</label>
+                                <select id="filterStatus">
+                                    <option value="">Todos</option>
+                                    <option value="active" selected>Activos</option>
+                                    <option value="blocked">Bloqueados</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="filterTag">Etiqueta</label>
+                                <select id="filterTag">
+                                    <option value="">Todas</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="filterCustomField">Campo</label>
+                                <select id="filterCustomField">
+                                    <option value="">Todos</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline" id="previewRecipientsBtn">
+                            <i class="fas fa-eye"></i>
+                            Previsualizar Destinatarios
+                        </button>
+
+                        <div class="recipients-preview" id="recipientsPreview" style="display: none;">
+                            <div class="recipients-count" id="recipientsCount">0 destinatarios</div>
+                            <div class="recipients-list" id="recipientsList"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="scheduledAt">Programar Envío (Opcional)</label>
+                        <input type="datetime-local" id="scheduledAt">
+                        <small>Deja vacío para guardar como borrador</small>
+                    </div>
+                </form>
+                </div>
+                
+                <!-- Preview -->
+                <div class="campaign-preview-section">
+                    <div>
+                        <div class="preview-title">Preview en WhatsApp</div>
+                        <div class="phone-mockup">
+                            <div class="phone-notch"></div>
+                            <div class="phone-screen">
+                                <!-- WhatsApp Header -->
+                                <div class="whatsapp-header">
+                                    <i class="fas fa-arrow-left"></i>
+                                    <div class="whatsapp-header-avatar">
+                                        <i class="fas fa-building"></i>
+                                    </div>
+                                    <div class="whatsapp-header-info">
+                                        <div class="whatsapp-header-name">Tu Negocio</div>
+                                        <div class="whatsapp-header-status">en línea</div>
+                                    </div>
+                                    <div class="whatsapp-header-icons">
+                                        <i class="fas fa-video"></i>
+                                        <i class="fas fa-phone"></i>
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- Chat Area -->
+                                <div class="whatsapp-chat">
+                                    <div id="messagePreview" class="preview-placeholder">
+                                        <i class="far fa-comment-dots" style="font-size: 48px; margin-bottom: 12px; opacity: 0.3;"></i>
+                                        <p>Escribe tu mensaje para ver el preview</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Input Bar -->
+                                <div class="whatsapp-input-bar">
+                                    <i class="far fa-smile" style="color: #999; font-size: 24px;"></i>
+                                    <input type="text" class="whatsapp-input" placeholder="Mensaje" readonly>
+                                    <i class="fas fa-paperclip" style="color: #999; font-size: 20px;"></i>
+                                    <button class="whatsapp-send-btn">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" id="cancelCampaignBtn">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="saveCampaignBtn">
+                    <i class="fas fa-save"></i>
+                    Guardar Campaña
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Modal -->
+    <div class="modal" id="statsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="statsModalTitle">Estadísticas de Campaña</h3>
+                <button class="btn-icon" id="closeStatsModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="statsModalBody">
+                <!-- Se llenará dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p style="margin-top: 12px; color: #374151; font-weight: 500;">Procesando...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/template-variable-mapper.js"></script>
+    <script src="/js/campaigns.js?v=1.0"></script>
+</body>
+</html>

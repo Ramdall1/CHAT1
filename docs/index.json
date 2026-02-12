@@ -1,0 +1,249 @@
+{
+  "project": {
+    "name": "chat-bot-enterprise",
+    "version": "5.1.0",
+    "description": "Sistema de Chat Bot autónomo, estable y escalable con IA conversacional y gestión completa de contactos",
+    "main": "src/main.js",
+    "type": "module",
+    "engines": {
+      "node": ">=18.0.0",
+      "npm": ">=9.0.0"
+    },
+    "exports": {
+      ".": {
+        "import": "./src/main.js",
+        "types": "./types/index.d.ts"
+      },
+      "./core": {
+        "import": "./src/core/index.js"
+      },
+      "./utils": {
+        "import": "./src/utils/index.js"
+      },
+      "./config": {
+        "import": "./src/config/index.js"
+      }
+    },
+    "imports": {
+      "#core/*": "./src/core/*.js",
+      "#utils/*": "./src/utils/*.js",
+      "#config/*": "./src/config/*.js",
+      "#types/*": "./src/types/*.js"
+    },
+    "scripts": {
+      "start": "node src/main.js",
+      "start:dev": "node --watch src/main.js",
+      "start:debug": "node --inspect src/main.js",
+      "start:legacy": "node src/main.js",
+      "start:prod": "NODE_ENV=production pm2 start ecosystem.config.js",
+      "stop": "pm2 stop ecosystem.config.js",
+      "restart": "pm2 restart ecosystem.config.js",
+      "test": "cross-env NODE_ENV=test jest --config=jest.config.js",
+      "test:watch": "cross-env NODE_ENV=test jest --config=jest.config.js --watch",
+      "test:coverage": "cross-env NODE_ENV=test jest --config=jest.config.js --coverage",
+      "test:fast": "cross-env NODE_ENV=test jest --config=jest.fast.config.js",
+      "test:fast:watch": "cross-env NODE_ENV=test jest --config=jest.fast.config.js --watch",
+      "test:quick": "cross-env NODE_ENV=test jest --config=jest.fast.config.js --bail --maxWorkers=1",
+      "test:unit:fast": "cross-env NODE_ENV=test jest tests/unit --config=jest.fast.config.js --bail",
+      "test:real:fast": "cross-env NODE_ENV=test jest tests/real-unit --config=jest.fast.config.js --bail",
+      "test:smart": "node scripts/smart-test.js",
+      "test:parallel": "cross-env NODE_ENV=test CI_PARALLEL=true jest --config=jest.config.js --maxWorkers=75%",
+      "test:integration": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' npx jest tests/integration",
+      "test:integration:watch": "cross-env NODE_ENV=test NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest --config=jest.integration.config.js --watch",
+      "test:unit": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' npx jest tests/unit",
+      "test:e2e": "npx playwright test",
+      "test:all": "npm run test && npm run test:e2e",
+      "test:scoring": "node test-scoring-system.js",
+      "test:cleanup": "node cleanup-test-reports.js",
+      "test:quality": "node scripts/verify-quality.js",
+      "test:benchmark": "node scripts/jest-benchmark.js",
+      "test:thresholds": "node scripts/progressive-thresholds.js",
+      "test:thresholds:apply": "node scripts/progressive-thresholds.js --apply",
+      "coverage:report": "node scripts/coverage-report.js",
+      "ci:local": "node scripts/local-ci.js",
+      "notify:quality": "node scripts/quality-notifications.js",
+      "notify:configure": "node scripts/quality-notifications.js --configure",
+      "notify:config": "node scripts/quality-notifications.js --show-config",
+      "setup:quality": "node scripts/setup-quality-system.js",
+      "health": "curl -s http://localhost:3000/health | jq",
+      "stats": "curl -s http://localhost:3000/stats | jq",
+      "lint": "eslint .",
+      "lint:fix": "eslint . --ext .js,.mjs,.cjs --fix",
+      "format": "prettier --write .",
+      "format:check": "prettier --check .",
+      "type-check": "tsc --noEmit",
+      "build": "npm run lint && npm run type-check && npm run test",
+      "build:docker": "docker build -t chatbot-enterprise .",
+      "docker:up": "docker-compose up -d",
+      "docker:down": "docker-compose down",
+      "docker:logs": "docker-compose logs -f",
+      "setup": "npm install && npm run prepare",
+      "clean": "rm -rf node_modules package-lock.json && npm install",
+      "clean:cache": "npm cache clean --force",
+      "logs": "pm2 logs",
+      "monitor": "pm2 monit",
+      "backup": "node scripts/backup.js",
+      "maintenance": "node scripts/cleanup-maintenance.js",
+      "maintenance:dry-run": "echo 'Ejecutando mantenimiento en modo simulación...' && node scripts/cleanup-maintenance.js --dry-run",
+      "migrate": "node scripts/migrate.js",
+      "seed": "node scripts/seed.js",
+      "prepare": "npx husky",
+      "security:audit": "npm audit --audit-level=moderate",
+      "imports:check": "node maintenance-check.js",
+      "imports:fix": "node fix-imports-smart.js",
+      "imports:circular": "node detect-circular-imports.js",
+      "imports:syntax": "node validate-import-syntax.js",
+      "imports:availability": "node check-module-availability.js",
+      "security:fix": "npm audit fix",
+      "deps:check": "npm outdated",
+      "deps:update": "npm update"
+    },
+    "dependencies": {
+      "@hapi/joi": "^17.1.1",
+      "@prisma/client": "^6.17.1",
+      "archiver": "^7.0.1",
+      "axios": "^1.12.2",
+      "bcrypt": "^6.0.0",
+      "bcryptjs": "^3.0.2",
+      "better-sqlite3": "^12.4.1",
+      "body-parser": "^2.2.0",
+      "class-transformer": "^0.5.1",
+      "class-validator": "^0.14.2",
+      "compression": "^1.8.1",
+      "cors": "^2.8.5",
+      "crypto-js": "^4.2.0",
+      "csv-writer": "^1.6.0",
+      "dotenv": "^17.2.3",
+      "dotenv-safe": "^9.1.0",
+      "exceljs": "^4.4.0",
+      "express": "^5.1.0",
+      "express-jwt": "^8.5.1",
+      "express-rate-limit": "^8.1.0",
+      "express-slow-down": "^3.0.0",
+      "express-validator": "^7.2.1",
+      "fluent-ffmpeg": "^2.1.3",
+      "fs-extra": "^11.3.2",
+      "geoip-lite": "^1.4.10",
+      "helmet": "^8.1.0",
+      "ioredis": "^5.8.2",
+      "isomorphic-dompurify": "^2.30.1",
+      "joi": "^18.0.1",
+      "jsonwebtoken": "^9.0.2",
+      "mime-types": "^3.0.1",
+      "morgan": "^1.10.1",
+      "multer": "^2.0.2",
+      "node-cache": "^5.1.2",
+      "node-cron": "^4.2.1",
+      "node-fetch": "^3.3.2",
+      "nodemailer": "^7.0.9",
+      "otplib": "^12.0.1",
+      "pdfkit": "^0.17.2",
+      "prisma": "^6.17.1",
+      "qrcode": "^1.5.4",
+      "rate-limit-redis": "^4.2.0",
+      "sequelize": "^6.37.7",
+      "socket.io": "^4.8.1",
+      "speakeasy": "^2.0.0",
+      "sqlite3": "^5.1.7",
+      "unzipper": "^0.12.3",
+      "uuid": "^13.0.0",
+      "validator": "^13.15.15",
+      "winston": "^3.18.3",
+      "winston-daily-rotate-file": "^5.0.0",
+      "xss": "^1.0.15"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.28.4",
+      "@babel/preset-env": "^7.28.3",
+      "@jest/globals": "^30.2.0",
+      "@playwright/test": "^1.56.1",
+      "@types/node": "^22.18.12",
+      "@typescript-eslint/eslint-plugin": "^8.0.0",
+      "@typescript-eslint/parser": "^8.0.0",
+      "babel-jest": "^30.2.0",
+      "cross-env": "^10.1.0",
+      "eslint": "^8.57.0",
+      "eslint-config-prettier": "^10.1.8",
+      "eslint-plugin-import": "^2.30.0",
+      "eslint-plugin-node": "^11.1.0",
+      "eslint-plugin-prettier": "^5.5.4",
+      "eslint-plugin-security": "^3.0.1",
+      "husky": "^9.1.7",
+      "jest": "^30.2.0",
+      "jest-environment-jsdom": "^30.2.0",
+      "jest-html-reporters": "^3.1.7",
+      "mongodb-memory-server": "^10.2.3",
+      "nodemon": "^3.1.7",
+      "pm2": "^6.0.13",
+      "prettier": "^3.6.2",
+      "supertest": "^7.1.4",
+      "typescript": "^5.6.3"
+    },
+    "peerDependencies": {
+      "redis": "^4.0.0"
+    },
+    "optionalDependencies": {
+      "@tensorflow/tfjs-node": "^4.21.0",
+      "puppeteer": "^23.0.0",
+      "sharp": "^0.34.4"
+    },
+    "resolutions": {
+      "validator": "^13.15.15"
+    },
+    "keywords": [
+      "chatbot",
+      "ai",
+      "conversational-ai",
+      "express",
+      "nodejs",
+      "enterprise",
+      "scalable",
+      "es-modules"
+    ],
+    "author": "ChatBot Enterprise Team",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/your-org/chat-bot-enterprise.git"
+    },
+    "bugs": {
+      "url": "https://github.com/your-org/chat-bot-enterprise/issues"
+    },
+    "homepage": "https://github.com/your-org/chat-bot-enterprise#readme"
+  },
+  "generation": {
+    "timestamp": "2025-10-24T01:09:48.424Z",
+    "duration": 0,
+    "generated": {
+      "jsdoc": true,
+      "swagger": true,
+      "components": true,
+      "readme": true,
+      "index": false
+    },
+    "errors": [],
+    "warnings": []
+  },
+  "documentation": {
+    "jsdoc": {
+      "url": "./jsdoc/index.html",
+      "available": true,
+      "stats": null
+    },
+    "swagger": {
+      "url": "./swagger/index.html",
+      "available": true,
+      "stats": null
+    },
+    "components": {
+      "url": "./components/index.html",
+      "available": true,
+      "stats": null
+    },
+    "readme": {
+      "url": "./README.md",
+      "available": true,
+      "stats": null
+    }
+  }
+}

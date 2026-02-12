@@ -1,0 +1,103 @@
+{
+  "billing": {
+    "currency": "USD",
+    "taxRate": 0.10,
+    "paymentMethods": ["credit_card", "paypal", "stripe", "bank_transfer"],
+    "invoiceSettings": {
+      "dueInDays": 30,
+      "reminderDays": [7, 3, 1],
+      "lateFeePercentage": 0.05,
+      "autoSend": true
+    },
+    "pricingPlans": {
+      "starter": {
+        "name": "Plan Starter",
+        "monthlyPrice": 29.99,
+        "yearlyPrice": 299.99,
+        "features": ["1000 mensajes", "Soporte básico"],
+        "limits": {
+          "messages": 1000,
+          "aiRequests": 100,
+          "storage": "1GB"
+        }
+      },
+      "professional": {
+        "name": "Plan Professional",
+        "monthlyPrice": 99.99,
+        "yearlyPrice": 999.99,
+        "features": ["10000 mensajes", "IA avanzada", "Analytics"],
+        "limits": {
+          "messages": 10000,
+          "aiRequests": 1000,
+          "storage": "10GB"
+        }
+      },
+      "enterprise": {
+        "name": "Plan Enterprise",
+        "monthlyPrice": 299.99,
+        "yearlyPrice": 2999.99,
+        "features": ["Mensajes ilimitados", "IA premium", "Soporte 24/7"],
+        "limits": {
+          "messages": -1,
+          "aiRequests": -1,
+          "storage": "100GB"
+        }
+      }
+    },
+    "usagePricing": {
+      "messages": 0.01,
+      "aiRequests": 0.05,
+      "storage": 0.10,
+      "bandwidth": 0.02
+    }
+  },
+  "commerce": {
+    "currency": "USD",
+    "taxRate": 0.08,
+    "shippingCosts": {
+      "standard": 5.99,
+      "express": 12.99,
+      "overnight": 24.99
+    },
+    "freeShippingThreshold": 100.00,
+    "inventory": {
+      "lowStockThreshold": 10,
+      "autoReorder": false,
+      "trackInventory": true
+    },
+    "cart": {
+      "expirationHours": 24,
+      "maxItems": 50,
+      "allowBackorders": false
+    },
+    "orders": {
+      "autoConfirm": true,
+      "defaultStatus": "pending",
+      "cancelationWindow": 24
+    },
+    "payments": {
+      "providers": ["stripe", "paypal"],
+      "currencies": ["USD", "EUR", "GBP"],
+      "refundPolicy": "30_days"
+    }
+  },
+  "integration": {
+    "webhooks": {
+      "billing": {
+        "invoiceCreated": true,
+        "paymentReceived": true,
+        "subscriptionUpdated": true
+      },
+      "commerce": {
+        "orderCreated": true,
+        "orderUpdated": true,
+        "inventoryLow": true
+      }
+    },
+    "notifications": {
+      "email": true,
+      "sms": false,
+      "whatsapp": true
+    }
+  }
+}

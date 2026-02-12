@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control del Servidor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #1a202c;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .status {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.active {
+            background: #10b981;
+        }
+
+        .status-dot.paused {
+            background: #f59e0b;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-restart {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            grid-column: 1 / -1;
+        }
+
+        .btn-restart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-restart:active {
+            transform: scale(0.98);
+        }
+
+        .btn-pause {
+            background: #fef3c7;
+            color: #92400e;
+            border: 2px solid #fcd34d;
+        }
+
+        .btn-pause:hover {
+            background: #fde68a;
+            transform: translateY(-2px);
+        }
+
+        .btn-pause:active {
+            transform: scale(0.98);
+        }
+
+        .btn-resume {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #6ee7b7;
+        }
+
+        .btn-resume:hover {
+            background: #a7f3d0;
+            transform: translateY(-2px);
+        }
+
+        .btn-resume:active {
+            transform: scale(0.98);
+        }
+
+        .shortcuts {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .shortcuts h3 {
+            font-size: 12px;
+            font-weight: 700;
+            color: #0369a1;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .shortcut-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #bae6fd;
+            font-size: 13px;
+            color: #0c4a6e;
+        }
+
+        .shortcut-item:last-child {
+            border-bottom: none;
+        }
+
+        .shortcut-key {
+            background: white;
+            border: 1px solid #bae6fd;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .message.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #6ee7b7;
+            display: block;
+        }
+
+        .message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            display: block;
+        }
+
+        .message.info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+            display: block;
+        }
+
+        .footer {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <i class="fas fa-server"></i>
+                Control del Servidor
+            </h1>
+            <p>Gestiona el estado del servidor de chat en vivo</p>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <div class="status">
+            <div class="status-indicator">
+                <span class="status-dot active" id="statusDot"></span>
+                <span id="statusText">Servidor activo</span>
+            </div>
+            <div style="font-size: 12px; color: #64748b;">
+                <span id="statusTime"></span>
+            </div>
+        </div>
+
+        <div class="shortcuts">
+            <h3>Atajos de teclado (desde el navegador)</h3>
+            <div class="shortcut-item">
+                <span>Reiniciar servidor</span>
+                <span class="shortcut-key">Ctrl + R</span>
+            </div>
+            <div class="shortcut-item">
+                <span>Pausar servidor</span>
+                <span class="shortcut-key">Ctrl + C</span>
+            </div>
+            <div class="shortcut-item">
+                <span>Reanudar servidor</span>
+                <span class="shortcut-key">Ctrl + Shift + R</span>
+            </div>
+            <p style="font-size: 11px; color: #64748b; margin-top: 12px; padding-top: 12px; border-top: 1px solid #bae6fd;">
+                💡 Los atajos funcionan desde esta página en el navegador. No es necesario ir a la terminal.
+            </p>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-restart" id="restartBtn">
+                <i class="fas fa-sync-alt"></i> Reiniciar Servidor
+            </button>
+            <button class="btn btn-pause" id="pauseBtn">
+                <i class="fas fa-pause"></i> Pausar
+            </button>
+            <button class="btn btn-resume" id="resumeBtn" style="display: none;">
+                <i class="fas fa-play"></i> Reanudar
+            </button>
+        </div>
+
+        <div class="footer">
+            <p>💡 Usa los atajos de teclado para un control más rápido</p>
+        </div>
+    </div>
+
+    <script>
+        const statusDot = document.getElementById('statusDot');
+        const statusText = document.getElementById('statusText');
+        const statusTime = document.getElementById('statusTime');
+        const messageEl = document.getElementById('message');
+        const restartBtn = document.getElementById('restartBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const resumeBtn = document.getElementById('resumeBtn');
+
+        let isPaused = false;
+
+        // Actualizar hora
+        function updateTime() {
+            const now = new Date();
+            statusTime.textContent = now.toLocaleTimeString('es-ES');
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Mostrar mensaje
+        function showMessage(text, type = 'info') {
+            messageEl.textContent = text;
+            messageEl.className = `message ${type}`;
+            setTimeout(() => {
+                messageEl.className = 'message';
+            }, 3000);
+        }
+
+        // Reiniciar servidor
+        async function restartServer() {
+            try {
+                showMessage('🔄 Reiniciando servidor...', 'info');
+                const response = await fetch('/api/server/restart', { method: 'POST' });
+                const data = await response.json();
+
+                if (data.success) {
+                    showMessage('✅ Servidor reiniciado correctamente', 'success');
+                    isPaused = false;
+                    updateStatus();
+                } else {
+                    showMessage('❌ Error: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('❌ Error reiniciando servidor', 'error');
+                console.error(error);
+            }
+        }
+
+        // Pausar servidor
+        async function pauseServer() {
+            try {
+                showMessage('⏸️ Pausando servidor...', 'info');
+                const response = await fetch('/api/server/pause', { method: 'POST' });
+                const data = await response.json();
+
+                if (data.success) {
+                    showMessage('✅ Servidor pausado', 'success');
+                    isPaused = true;
+                    updateStatus();
+                } else {
+                    showMessage('❌ Error: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('❌ Error pausando servidor', 'error');
+                console.error(error);
+            }
+        }
+
+        // Reanudar servidor
+        async function resumeServer() {
+            try {
+                showMessage('▶️ Reanudando servidor...', 'info');
+                const response = await fetch('/api/server/resume', { method: 'POST' });
+                const data = await response.json();
+
+                if (data.success) {
+                    showMessage('✅ Servidor reanudado', 'success');
+                    isPaused = false;
+                    updateStatus();
+                } else {
+                    showMessage('❌ Error: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('❌ Error reanudando servidor', 'error');
+                console.error(error);
+            }
+        }
+
+        // Actualizar estado
+        function updateStatus() {
+            if (isPaused) {
+                statusDot.className = 'status-dot paused';
+                statusText.textContent = 'Servidor pausado';
+                pauseBtn.style.display = 'none';
+                resumeBtn.style.display = 'flex';
+            } else {
+                statusDot.className = 'status-dot active';
+                statusText.textContent = 'Servidor activo';
+                pauseBtn.style.display = 'flex';
+                resumeBtn.style.display = 'none';
+            }
+        }
+
+        // Event listeners
+        restartBtn.addEventListener('click', restartServer);
+        pauseBtn.addEventListener('click', pauseServer);
+        resumeBtn.addEventListener('click', resumeServer);
+
+        // Atajos de teclado
+        document.addEventListener('keydown', (e) => {
+            // Ctrl + R = Reiniciar
+            if (e.ctrlKey && e.key === 'r') {
+                e.preventDefault();
+                restartServer();
+            }
+            // Ctrl + C = Pausar
+            if (e.ctrlKey && e.key === 'c') {
+                e.preventDefault();
+                if (!isPaused) {
+                    pauseServer();
+                }
+            }
+            // Ctrl + Shift + R = Reanudar
+            if (e.ctrlKey && e.shiftKey && e.key === 'R') {
+                e.preventDefault();
+                if (isPaused) {
+                    resumeServer();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

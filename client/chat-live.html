@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat en Vivo - ChatBot Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/design-system.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/chat-live.css?v=3.0">
+    <link rel="stylesheet" href="/css/custom-fields.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1a202c;
+        }
+
+        /* Asegurar que el sidebar sea clickeable */
+        .sidebar a {
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        /* Chat Live Container */
+        .chat-live-container {
+            display: flex;
+            height: calc(100vh - 120px);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .conversations-panel {
+            width: 320px;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            background: #f8fafc;
+        }
+
+        .chat-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.3s ease;
+        }
+
+        .client-info-panel {
+            width: 300px;
+            border-left: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        /* Content header */
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .page-subtitle {
+            color: #64748b;
+            font-size: 14px;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        /* Chat Header Styles */
+        .chat-header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .chat-info:hover {
+            background-color: #f8fafc;
+        }
+
+        .chat-info.clickable {
+            cursor: pointer;
+        }
+
+        .client-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #6366f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .client-details h4 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a202c;
+        }
+
+        .client-details p {
+            margin: 4px 0 0 0;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .info-toggle-icon {
+            margin-left: auto;
+            color: #64748b;
+            transition: color 0.2s;
+        }
+
+        .chat-info:hover .info-toggle-icon {
+            color: #6366f1;
+        }
+
+        .chat-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* Client Info Panel */
+        .client-info-panel {
+            background: white;
+            border-left: 1px solid #e2e8f0;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .client-info-panel .panel-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .client-info-panel .panel-header h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a202c;
+        }
+
+        .close-client-info-btn {
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .close-client-info-btn:hover {
+            background-color: #f1f5f9;
+            color: #1a202c;
+        }
+
+        .client-details {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: linear-gradient(180deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            overflow-y: auto;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .sidebar-menu {
+            flex: 1;
+            padding: 16px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 14px;
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .menu-item.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-left-color: white;
+        }
+
+        .menu-item i {
+            width: 18px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* Main content adjustment */
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        /* Header actions styles if needed in the future */
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-comments"></i>
+                    <span>ChatBot Pro</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="/dashboard" class="menu-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/chat-live" class="menu-item active">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Chat en Vivo</span>
+                </a>
+                <a href="/contacts" class="menu-item">
+                    <i class="fas fa-address-book"></i>
+                    <span>Contactos</span>
+                </a>
+                <a href="/campaigns" class="menu-item">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Campañas</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <div class="content-header">
+                <div class="header-title">
+                    <h1><i class="fas fa-comments"></i> Chat en Vivo</h1>
+                    <p>Gestiona conversaciones en tiempo real con tus clientes</p>
+                </div>
+                <div class="header-actions">
+                    <!-- Acciones del header si se necesitan en el futuro -->
+                </div>
+            </div>
+
+            <div class="chat-live-container">
+                <!-- Panel de conversaciones -->
+                <div class="conversations-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-list"></i> Conversaciones</h3>
+                        <div class="panel-actions">
+                            <button class="btn btn-sm btn-primary" id="refreshConversations">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="conversations-list" id="conversationsList">
+                        <!-- Las conversaciones se cargarán aquí -->
+                    </div>
+                </div>
+
+                <!-- Panel de chat -->
+                <div class="chat-panel">
+                    <div class="chat-header" id="chatHeader">
+                        <div class="empty-chat">
+                            <p>Selecciona una conversación para comenzar</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="empty-chat">
+                            <i class="fas fa-comments fa-3x"></i>
+                            <p>No hay conversación seleccionada</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-container" id="chatInputContainer" style="display: none;">
+                        <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                            <span>El cliente está escribiendo...</span>
+                        </div>
+                        <div class="chat-input">
+                            <div class="input-menu-wrapper">
+                                <button id="menuToggleBtn" class="btn-menu-toggle" title="Menú de opciones">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <div class="input-menu" id="inputMenu" style="display: none;">
+                                    <button class="menu-item" id="templatesBtn" data-action="templates">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>Plantillas</span>
+                                    </button>
+                                    <button class="menu-item" id="imagesBtn" data-action="images">
+                                        <i class="fas fa-image"></i>
+                                        <span>Imágenes</span>
+                                    </button>
+                                    <button class="menu-item" id="videosBtn" data-action="videos">
+                                        <i class="fas fa-video"></i>
+                                        <span>Videos</span>
+                                    </button>
+                                    <button class="menu-item" id="documentsBtn" data-action="documents">
+                                        <i class="fas fa-file"></i>
+                                        <span>Documentos</span>
+                                    </button>
+                                    <button class="menu-item" id="emojisBtn" data-action="emojis">
+                                        <i class="fas fa-smile"></i>
+                                        <span>Emojis</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <input type="text" id="messageInput" placeholder="Escribe tu mensaje...">
+                            <input type="file" id="fileInput" accept="image/*,video/*,audio/*,.pdf,.doc,.docx" style="display: none;">
+                            <button id="sendButton" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Modal de Plantillas -->
+                    <div class="modal" id="templatesModal" style="display: none;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Plantillas</h3>
+                                <button class="modal-close" data-modal="templatesModal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="templates-list" id="templatesList">
+                                    <div class="loading">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                        <p>Cargando plantillas...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal de Imágenes -->
+                    <div class="modal" id="imagesModal" style="display: none;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Imágenes</h3>
+                                <button class="modal-close" data-modal="imagesModal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="file" id="imageFileInput" accept="image/*" style="display: none;">
+                                <button class="btn btn-primary" id="selectImageBtn">
+                                    <i class="fas fa-folder-open"></i> Seleccionar imagen
+                                </button>
+                                <div class="images-preview" id="imagesPreview"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal de Videos -->
+                    <div class="modal" id="videosModal" style="display: none;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Videos</h3>
+                                <button class="modal-close" data-modal="videosModal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="file" id="videoFileInput" accept="video/*" style="display: none;">
+                                <button class="btn btn-primary" id="selectVideoBtn">
+                                    <i class="fas fa-folder-open"></i> Seleccionar video
+                                </button>
+                                <div class="videos-preview" id="videosPreview"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal de Documentos -->
+                    <div class="modal" id="documentsModal" style="display: none;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Documentos</h3>
+                                <button class="modal-close" data-modal="documentsModal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="file" id="documentFileInput" accept=".pdf,.doc,.docx,.txt,.xls,.xlsx" style="display: none;">
+                                <button class="btn btn-primary" id="selectDocumentBtn">
+                                    <i class="fas fa-folder-open"></i> Seleccionar documento
+                                </button>
+                                <div class="documents-preview" id="documentsPreview"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal de Emojis -->
+                    <div class="modal" id="emojisModal" style="display: none;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Emojis</h3>
+                                <button class="modal-close" data-modal="emojisModal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="emojis-grid" id="emojisGrid"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel de información del cliente (oculto inicialmente) -->
+                <div class="client-info-panel" id="clientInfoPanel" style="display: none;">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-user"></i> Información del Cliente</h3>
+                        <button class="close-client-info-btn" id="closeClientInfoBtn" title="Cerrar">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="client-details" id="clientDetails">
+                        <!-- La información del cliente se cargará aquí -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/sidebar.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" referrerpolicy="no-referrer"></script>
+    <script src="/js/chat-live.js?v=61.0"></script>
+    <script src="/js/custom-fields.js?v=7.0"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar chat en vivo
+            if (typeof ChatLiveManager !== 'undefined') {
+                const chatManager = new ChatLiveManager();
+                chatManager.init();
+            }
+        });
+    </script>
+</body>
+</html>

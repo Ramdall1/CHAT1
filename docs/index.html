@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación - chat-bot-enterprise</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .doc-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.15);
+        }
+        
+        .doc-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .doc-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .doc-card .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .doc-card .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+        }
+        
+        .doc-card.disabled {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .stats {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .stats h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 3rem;
+            opacity: 0.8;
+        }
+        
+        .icon {
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .docs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Centro de Documentación</h1>
+            <p>Sistema de Chat Bot autónomo, estable y escalable con IA conversacional y gestión completa de contactos</p>
+            <p><strong>Versión:</strong> 5.1.0 | <strong>Generado:</strong> 10/23/2025, 8:09:48 PM</p>
+        </div>
+        
+        <div class="docs-grid">
+            <div class="doc-card ">
+                <h3><span class="icon">📖</span> Documentación JSDoc</h3>
+                <p>Documentación completa del código fuente con JSDoc. Incluye clases, funciones, módulos y constantes.</p>
+                <a href="./jsdoc/index.html" class="btn">Ver Documentación</a>
+            </div>
+            
+            <div class="doc-card ">
+                <h3><span class="icon">🔌</span> API Documentation</h3>
+                <p>Documentación interactiva de la API REST con Swagger/OpenAPI. Prueba endpoints directamente.</p>
+                <a href="./swagger/index.html" class="btn">Ver API Docs</a>
+            </div>
+            
+            <div class="doc-card ">
+                <h3><span class="icon">🧩</span> Catálogo de Componentes</h3>
+                <p>Documentación de componentes UI, elementos HTML, CSS y JavaScript del frontend.</p>
+                <a href="./components/index.html" class="btn">Ver Componentes</a>
+            </div>
+            
+            <div class="doc-card ">
+                <h3><span class="icon">📋</span> README del Proyecto</h3>
+                <p>Guía completa del proyecto con instalación, configuración, uso y contribución.</p>
+                <a href="./README.md" class="btn">Ver README</a>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <h3>📊 Estadísticas de Generación</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-value">0ms</span>
+                    <span class="stat-label">Tiempo de Generación</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">4</span>
+                    <span class="stat-label">Documentos Generados</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">0</span>
+                    <span class="stat-label">Errores</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">0</span>
+                    <span class="stat-label">Advertencias</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Generado automáticamente por DocumentationCoordinator v1.0.0</p>
+            <p>Sistema de ChatBot - ChatBot Enterprise Team</p>
+        </div>
+    </div>
+</body>
+</html>

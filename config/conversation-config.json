@@ -1,0 +1,10 @@
+{
+  "aiEndpoint": "http://192.168.40.90:1234/v1/chat/completions",
+  "aiModel": "qwen_qwen3-4b-thinking-2507",
+  "maxTokens": 500,
+  "temperature": 0.7,
+  "intentionThreshold": 0.7,
+  "templateCooldown": 300000,
+  "maxRetries": 3,
+  "responseTimeout": 30000
+}

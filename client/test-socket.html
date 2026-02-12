@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Socket.IO</title>
+</head>
+<body>
+    <h1>Test Socket.IO</h1>
+    <div id="status">Conectando...</div>
+    <div id="logs"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const statusDiv = document.getElementById('status');
+        const logsDiv = document.getElementById('logs');
+        
+        function addLog(message) {
+            console.log(message);
+            const p = document.createElement('p');
+            p.textContent = new Date().toLocaleTimeString() + ': ' + message;
+            logsDiv.appendChild(p);
+        }
+        
+        addLog('Iniciando test Socket.IO...');
+        addLog('typeof io: ' + typeof io);
+        addLog('typeof window.io: ' + typeof window.io);
+        
+        if (typeof io === 'undefined') {
+            addLog('ERROR: Socket.IO no está disponible');
+            statusDiv.textContent = 'ERROR: Socket.IO no disponible';
+        } else {
+            addLog('Socket.IO disponible, conectando...');
+            const socket = io();
+            
+            socket.on('connect', () => {
+                addLog('✅ Conectado con ID: ' + socket.id);
+                statusDiv.textContent = 'Conectado: ' + socket.id;
+            });
+            
+            socket.on('disconnect', () => {
+                addLog('❌ Desconectado');
+                statusDiv.textContent = 'Desconectado';
+            });
+            
+            socket.on('connect_error', (error) => {
+                addLog('❌ Error de conexión: ' + error.message);
+                statusDiv.textContent = 'Error: ' + error.message;
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "maxBackups": 30,
+  "autoBackupEnabled": true,
+  "backupSchedule": "0 2 * * *",
+  "compressionLevel": 6,
+  "includeUploads": true,
+  "includeTemplates": true,
+  "includeConfig": true,
+  "includeDatabase": true
+}

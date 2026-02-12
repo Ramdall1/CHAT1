@@ -1,0 +1,704 @@
+{
+  "generatedAt": "2025-10-24T01:09:47.876Z",
+  "totalComponents": 77,
+  "componentsByType": {
+    "html": 39,
+    "javascript": 26,
+    "css": 12
+  },
+  "components": [
+    {
+      "name": "admin-dashboard",
+      "title": "Configuración General - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/admin-dashboard.html",
+      "size": 21700,
+      "lastModified": "10/20/2025, 11:58:54 PM"
+    },
+    {
+      "name": "ai-admin-dashboard",
+      "title": "IA Conversacional - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/ai-admin-dashboard.html",
+      "size": 19590,
+      "lastModified": "10/22/2025, 6:03:16 PM"
+    },
+    {
+      "name": "analytics",
+      "title": "Analytics Avanzado - ChatBot",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/analytics.html",
+      "size": 17469,
+      "lastModified": "10/23/2025, 1:59:41 PM"
+    },
+    {
+      "name": "backup-dashboard",
+      "title": "Backup - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/backup-dashboard.html",
+      "size": 26778,
+      "lastModified": "10/20/2025, 11:58:54 PM"
+    },
+    {
+      "name": "broadcast-manager",
+      "title": "Difusión Masiva - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/broadcast-manager.html",
+      "size": 28783,
+      "lastModified": "10/20/2025, 11:58:54 PM"
+    },
+    {
+      "name": "comparacion-dashboard",
+      "title": "Comparación Dashboard - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/comparacion-dashboard.html",
+      "size": 13130,
+      "lastModified": "10/23/2025, 1:40:25 PM"
+    },
+    {
+      "name": "contacts-dashboard",
+      "title": "Gestión de Contactos - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/contacts-dashboard.html",
+      "size": 34746,
+      "lastModified": "10/22/2025, 6:03:45 PM"
+    },
+    {
+      "name": "contacts-manager",
+      "title": "Gestión de Contactos - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/contacts-manager.html",
+      "size": 26918,
+      "lastModified": "10/20/2025, 11:58:54 PM"
+    },
+    {
+      "name": "dashboard-modern",
+      "title": "Dashboard Moderno - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/dashboard-modern.html",
+      "size": 27666,
+      "lastModified": "10/22/2025, 6:05:33 PM"
+    },
+    {
+      "name": "dashboard-optimizado",
+      "title": "Dashboard ChatBot Pro - Optimizado",
+      "description": "Dashboard principal de ChatBot Pro - Sistema de gestión de conversaciones",
+      "type": "html",
+      "file": "public/dashboard-optimizado.html",
+      "size": 27569,
+      "lastModified": "10/23/2025, 1:50:20 PM"
+    },
+    {
+      "name": "dashboard-simple",
+      "title": "Dashboard Simple - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/dashboard-simple.html",
+      "size": 13344,
+      "lastModified": "10/23/2025, 1:22:14 PM"
+    },
+    {
+      "name": "dashboard",
+      "title": "Dashboard - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/dashboard.html",
+      "size": 147040,
+      "lastModified": "10/23/2025, 3:39:19 PM"
+    },
+    {
+      "name": "debug-dashboard",
+      "title": "Debug Dashboard - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/debug-dashboard.html",
+      "size": 17245,
+      "lastModified": "10/23/2025, 1:23:55 PM"
+    },
+    {
+      "name": "design-preview",
+      "title": "Chat-Bot-1 — Diseño Inspirado en ManyChat",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/design-preview.html",
+      "size": 14390,
+      "lastModified": "10/23/2025, 9:54:42 AM"
+    },
+    {
+      "name": "diagnostico",
+      "title": "Diagnóstico de Aplicación",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/diagnostico.html",
+      "size": 15088,
+      "lastModified": "10/23/2025, 1:19:18 PM"
+    },
+    {
+      "name": "flow-builder-pro",
+      "title": "Flow Builder Pro - ChatBot",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/flow-builder-pro.html",
+      "size": 21812,
+      "lastModified": "10/20/2025, 11:58:54 PM"
+    },
+    {
+      "name": "flows-advanced",
+      "title": "Constructor Avanzado de Flujos - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/flows-advanced.html",
+      "size": 25992,
+      "lastModified": "10/20/2025, 11:58:54 PM"
+    },
+    {
+      "name": "flows",
+      "title": "Constructor de Flujos - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/flows.html",
+      "size": 20383,
+      "lastModified": "10/20/2025, 10:20:43 PM"
+    },
+    {
+      "name": "index-manychat",
+      "title": "ChatBot Pro - Plataforma Completa de Automatización",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/index-manychat.html",
+      "size": 24946,
+      "lastModified": "10/22/2025, 6:05:44 PM"
+    },
+    {
+      "name": "index",
+      "title": "Chat-Bot-1 — Panel Profesional",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/index.html",
+      "size": 48541,
+      "lastModified": "10/23/2025, 3:11:15 PM"
+    },
+    {
+      "name": "integrations-dashboard",
+      "title": "Integraciones - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/integrations-dashboard.html",
+      "size": 28016,
+      "lastModified": "10/20/2025, 11:58:54 PM"
+    },
+    {
+      "name": "integrations",
+      "title": "Integraciones - Chat Bot System",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/integrations.html",
+      "size": 36355,
+      "lastModified": "10/23/2025, 1:59:51 PM"
+    },
+    {
+      "name": "live-chat-pro",
+      "title": "Chat en Vivo - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/live-chat-pro.html",
+      "size": 33087,
+      "lastModified": "10/20/2025, 11:58:54 PM"
+    },
+    {
+      "name": "manychat-demo",
+      "title": "Chat Bot - Diseño Inspirado en ManyChat",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/manychat-demo.html",
+      "size": 20202,
+      "lastModified": "10/22/2025, 6:05:50 PM"
+    },
+    {
+      "name": "message-queue-dashboard",
+      "title": "Cola de Mensajes - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/message-queue-dashboard.html",
+      "size": 25131,
+      "lastModified": "10/20/2025, 11:58:54 PM"
+    },
+    {
+      "name": "multimedia-demo",
+      "title": "Demo Multimedia - Chat Bot Sistema",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/multimedia-demo.html",
+      "size": 21605,
+      "lastModified": "10/20/2025, 11:58:54 PM"
+    },
+    {
+      "name": "notifications-dashboard",
+      "title": "Notificaciones - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/notifications-dashboard.html",
+      "size": 23812,
+      "lastModified": "10/22/2025, 6:05:39 PM"
+    },
+    {
+      "name": "performance-monitor",
+      "title": "Monitor de Rendimiento - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/performance-monitor.html",
+      "size": 29890,
+      "lastModified": "10/22/2025, 6:05:16 PM"
+    },
+    {
+      "name": "reports-dashboard",
+      "title": "Reportes - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/reports-dashboard.html",
+      "size": 41261,
+      "lastModified": "10/20/2025, 11:58:54 PM"
+    },
+    {
+      "name": "sandbox-demo",
+      "title": "Sandbox Demo - Chat Bot",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/sandbox-demo.html",
+      "size": 18512,
+      "lastModified": "10/22/2025, 6:05:27 PM"
+    },
+    {
+      "name": "simple-index",
+      "title": "Chat Bot - Panel de Control",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/simple-index.html",
+      "size": 5869,
+      "lastModified": "10/20/2025, 10:14:36 PM"
+    },
+    {
+      "name": "template-pacing",
+      "title": "Template Pacing Dashboard - 360 Dialog",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/template-pacing.html",
+      "size": 13530,
+      "lastModified": "10/20/2025, 9:00:19 PM"
+    },
+    {
+      "name": "templates-automation",
+      "title": "Plantillas y Automatizaciones - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/templates-automation.html",
+      "size": 32578,
+      "lastModified": "10/20/2025, 11:58:54 PM"
+    },
+    {
+      "name": "templates-dashboard",
+      "title": "Plantillas WhatsApp - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/templates-dashboard.html",
+      "size": 28747,
+      "lastModified": "10/22/2025, 6:04:30 PM"
+    },
+    {
+      "name": "templates",
+      "title": "Plantillas de Flujos - WhatsApp Bot",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/templates.html",
+      "size": 20414,
+      "lastModified": "10/23/2025, 1:59:30 PM"
+    },
+    {
+      "name": "test-simple",
+      "title": "Prueba Simple - ChatBot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/test-simple.html",
+      "size": 7411,
+      "lastModified": "10/23/2025, 1:20:44 PM"
+    },
+    {
+      "name": "test-socketio",
+      "title": "Prueba Socket.IO",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/test-socketio.html",
+      "size": 5880,
+      "lastModified": "10/22/2025, 2:25:08 PM"
+    },
+    {
+      "name": "test",
+      "title": "Página de Prueba",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/test.html",
+      "size": 3627,
+      "lastModified": "10/23/2025, 1:16:59 PM"
+    },
+    {
+      "name": "visual-flow-builder",
+      "title": "Constructor Visual de Flujos - WhatsApp Bot Pro",
+      "description": "Sin descripción",
+      "type": "html",
+      "file": "public/visual-flow-builder.html",
+      "size": 18919,
+      "lastModified": "10/23/2025, 1:54:30 PM"
+    },
+    {
+      "name": "AIResponse",
+      "title": "Modelo de Respuesta de IA",
+      "description": "Define la estructura y validación para respuestas generadas por IA,",
+      "type": "javascript",
+      "file": "src/components/business/ai/models/AIResponse.js",
+      "size": 8485,
+      "lastModified": "10/22/2025, 11:09:14 AM"
+    },
+    {
+      "name": "AIService",
+      "title": "Servicio de IA",
+      "description": "Encapsula la lógica de negocio para interacciones con IA,",
+      "type": "javascript",
+      "file": "src/components/business/ai/services/AIService.js",
+      "size": 22847,
+      "lastModified": "10/22/2025, 2:55:46 PM"
+    },
+    {
+      "name": "AutomationController",
+      "title": "Controlador de Automatización",
+      "description": "Maneja las peticiones HTTP relacionadas con reglas de automatización,",
+      "type": "javascript",
+      "file": "src/components/business/automation/controllers/AutomationController.js",
+      "size": 16363,
+      "lastModified": "10/22/2025, 11:08:25 AM"
+    },
+    {
+      "name": "Rule",
+      "title": "Modelo de Regla de Automatización",
+      "description": "Define la estructura y validación para reglas de automatización",
+      "type": "javascript",
+      "file": "src/components/business/automation/models/Rule.js",
+      "size": 16078,
+      "lastModified": "10/22/2025, 11:09:39 AM"
+    },
+    {
+      "name": "automationRoutes",
+      "title": "Rutas de Automatización",
+      "description": "Define todas las rutas HTTP para la gestión de reglas de automatización,",
+      "type": "javascript",
+      "file": "src/components/business/automation/routes/automationRoutes.js",
+      "size": 8921,
+      "lastModified": "10/22/2025, 11:10:19 AM"
+    },
+    {
+      "name": "AutomationService",
+      "title": "Servicio de Automatización",
+      "description": "Maneja toda la lógica de negocio relacionada con reglas de automatización,",
+      "type": "javascript",
+      "file": "src/components/business/automation/services/AutomationService.js",
+      "size": 17896,
+      "lastModified": "10/22/2025, 11:12:13 AM"
+    },
+    {
+      "name": "ContactController",
+      "title": "Contact Controller",
+      "description": "Extrae la lógica de las rutas y la delega al servicio de contactos.",
+      "type": "javascript",
+      "file": "src/components/business/contacts/controllers/ContactController.js",
+      "size": 5461,
+      "lastModified": "10/22/2025, 11:08:38 AM"
+    },
+    {
+      "name": "Contact",
+      "title": "Modelo de Contacto",
+      "description": "Define la estructura y validaciones para los contactos",
+      "type": "javascript",
+      "file": "src/components/business/contacts/models/Contact.js",
+      "size": 7965,
+      "lastModified": "10/22/2025, 11:09:51 AM"
+    },
+    {
+      "name": "contactRoutes",
+      "title": "Rutas de Contactos Unificadas",
+      "description": "@author Chat-Bot-1-2 Team",
+      "type": "javascript",
+      "file": "src/components/business/contacts/routes/contactRoutes.js",
+      "size": 1507,
+      "lastModified": "10/22/2025, 11:10:32 AM"
+    },
+    {
+      "name": "ContactService",
+      "title": "Servicio de Contactos Unificado",
+      "description": "Maneja toda la lógica de negocio para contactos, etiquetas, campos personalizados y segmentos.",
+      "type": "javascript",
+      "file": "src/components/business/contacts/services/ContactService.js",
+      "size": 14320,
+      "lastModified": "10/22/2025, 11:11:58 AM"
+    },
+    {
+      "name": "MessageController",
+      "title": "Message Controller",
+      "description": "Orquesta las solicitudes HTTP para la mensajería.",
+      "type": "javascript",
+      "file": "src/components/business/messaging/controllers/MessageController.js",
+      "size": 2802,
+      "lastModified": "10/22/2025, 11:08:49 AM"
+    },
+    {
+      "name": "Message",
+      "title": "Modelo de Mensaje",
+      "description": "Define la estructura y validaciones para los mensajes",
+      "type": "javascript",
+      "file": "src/components/business/messaging/models/Message.js",
+      "size": 10779,
+      "lastModified": "10/22/2025, 11:09:27 AM"
+    },
+    {
+      "name": "messageRoutes",
+      "title": "Rutas de Mensajes",
+      "description": "Define todas las rutas HTTP para la gestión de mensajes,",
+      "type": "javascript",
+      "file": "src/components/business/messaging/routes/messageRoutes.js",
+      "size": 7175,
+      "lastModified": "10/22/2025, 11:10:47 AM"
+    },
+    {
+      "name": "MessageService",
+      "title": "Servicio de Mensajes",
+      "description": "Maneja toda la lógica de negocio relacionada con mensajes,",
+      "type": "javascript",
+      "file": "src/components/business/messaging/services/MessageService.js",
+      "size": 28387,
+      "lastModified": "10/22/2025, 11:17:21 AM"
+    },
+    {
+      "name": "templateController",
+      "title": "Template Controller",
+      "description": "Maneja las solicitudes HTTP para el módulo de plantillas,",
+      "type": "javascript",
+      "file": "src/components/business/templates/templateController.js",
+      "size": 3974,
+      "lastModified": "10/22/2025, 11:15:55 AM"
+    },
+    {
+      "name": "templateRoutes",
+      "title": "Template Routes",
+      "description": "Define las rutas para el API de plantillas.",
+      "type": "javascript",
+      "file": "src/components/business/templates/templateRoutes.js",
+      "size": 1012,
+      "lastModified": "10/22/2025, 11:11:05 AM"
+    },
+    {
+      "name": "templateService",
+      "title": "Template Service",
+      "description": "Encapsula la lógica de negocio para la gestión de plantillas.",
+      "type": "javascript",
+      "file": "src/components/business/templates/templateService.js",
+      "size": 5261,
+      "lastModified": "10/22/2025, 11:16:53 AM"
+    },
+    {
+      "name": "wabaHelpers",
+      "title": "WABA Helpers",
+      "description": "Funciones de ayuda para interactuar con la API de 360dialog (WABA).",
+      "type": "javascript",
+      "file": "src/components/business/templates/wabaHelpers.js",
+      "size": 1936,
+      "lastModified": "10/22/2025, 12:00:15 AM"
+    },
+    {
+      "name": "universal_logger",
+      "title": "Universal Logger - Sistema universal de logging y monitoreo",
+      "description": "Registra logs, mide tiempo de ejecución y detecta errores silenciosos",
+      "type": "javascript",
+      "file": "src/components/business/universal_logger.js",
+      "size": 20614,
+      "lastModified": "10/22/2025, 11:38:16 AM"
+    },
+    {
+      "name": "AlertManager",
+      "title": "AlertManager - Gestor de Alertas del Sistema",
+      "description": "Gestiona alertas del sistema, notificaciones, escalamiento",
+      "type": "javascript",
+      "file": "src/components/ui/AlertManager.js",
+      "size": 34397,
+      "lastModified": "10/22/2025, 11:38:16 AM"
+    },
+    {
+      "name": "Dashboard",
+      "title": "Dashboard Principal - Sistema de Visualización y Monitoreo",
+      "description": "Dashboard en tiempo real para monitorear el estado del sistema event-driven,",
+      "type": "javascript",
+      "file": "src/components/ui/Dashboard.js",
+      "size": 28653,
+      "lastModified": "10/22/2025, 11:15:00 AM"
+    },
+    {
+      "name": "EventMonitor",
+      "title": "EventMonitor - Monitor de Eventos en Tiempo Real",
+      "description": "Monitorea, analiza y procesa eventos del sistema en tiempo real",
+      "type": "javascript",
+      "file": "src/components/ui/EventMonitor.js",
+      "size": 30128,
+      "lastModified": "10/22/2025, 11:15:13 AM"
+    },
+    {
+      "name": "MetricsCollector",
+      "title": "MetricsCollector - Recopilador de Métricas del Sistema",
+      "description": "Recopila, procesa y almacena métricas del sistema en tiempo real",
+      "type": "javascript",
+      "file": "src/components/ui/MetricsCollector.js",
+      "size": 28281,
+      "lastModified": "10/22/2025, 11:15:07 AM"
+    },
+    {
+      "name": "PerformanceAnalyzer",
+      "title": "PerformanceAnalyzer - Analizador de Rendimiento del Sistema",
+      "description": "Analiza el rendimiento del sistema, identifica cuellos de botella,",
+      "type": "javascript",
+      "file": "src/components/ui/PerformanceAnalyzer.js",
+      "size": 43785,
+      "lastModified": "10/22/2025, 11:15:32 AM"
+    },
+    {
+      "name": "SystemHealthMonitor",
+      "title": "SystemHealthMonitor - Monitor de Salud del Sistema",
+      "description": "Monitorea la salud general del sistema, componentes y servicios,",
+      "type": "javascript",
+      "file": "src/components/ui/SystemHealthMonitor.js",
+      "size": 33484,
+      "lastModified": "10/22/2025, 11:15:19 AM"
+    },
+    {
+      "name": "index",
+      "title": "Dashboard Module - Índice Principal",
+      "description": "Centraliza todas las exportaciones del sistema de dashboard",
+      "type": "javascript",
+      "file": "src/components/ui/index.js",
+      "size": 9843,
+      "lastModified": "10/22/2025, 11:15:42 AM"
+    },
+    {
+      "name": "bootstrap-fallback",
+      "title": "bootstrap-fallback",
+      "description": "Hoja de estilos CSS",
+      "type": "css",
+      "file": "public/css/bootstrap-fallback.css",
+      "size": 2674,
+      "lastModified": "10/23/2025, 3:28:57 PM"
+    },
+    {
+      "name": "components",
+      "title": "components",
+      "description": "Hoja de estilos CSS",
+      "type": "css",
+      "file": "public/css/components.css",
+      "size": 25074,
+      "lastModified": "10/22/2025, 6:01:46 PM"
+    },
+    {
+      "name": "dashboard-modern",
+      "title": "dashboard-modern",
+      "description": "Hoja de estilos CSS",
+      "type": "css",
+      "file": "public/css/dashboard-modern.css",
+      "size": 14636,
+      "lastModified": "10/20/2025, 11:12:59 PM"
+    },
+    {
+      "name": "enhanced-styles",
+      "title": "enhanced-styles",
+      "description": "Hoja de estilos CSS",
+      "type": "css",
+      "file": "public/css/enhanced-styles.css",
+      "size": 13486,
+      "lastModified": "10/19/2025, 7:19:17 PM"
+    },
+    {
+      "name": "flow-builder-enhanced",
+      "title": "flow-builder-enhanced",
+      "description": "Hoja de estilos CSS",
+      "type": "css",
+      "file": "public/css/flow-builder-enhanced.css",
+      "size": 12574,
+      "lastModified": "10/20/2025, 10:51:24 PM"
+    },
+    {
+      "name": "fontawesome-fallback",
+      "title": "fontawesome-fallback",
+      "description": "Hoja de estilos CSS",
+      "type": "css",
+      "file": "public/css/fontawesome-fallback.css",
+      "size": 4951,
+      "lastModified": "10/23/2025, 3:29:22 PM"
+    },
+    {
+      "name": "manychat-components",
+      "title": "manychat-components",
+      "description": "Hoja de estilos CSS",
+      "type": "css",
+      "file": "public/css/manychat-components.css",
+      "size": 11189,
+      "lastModified": "10/20/2025, 10:22:43 PM"
+    },
+    {
+      "name": "manychat-inspired",
+      "title": "manychat-inspired",
+      "description": "Hoja de estilos CSS",
+      "type": "css",
+      "file": "public/css/manychat-inspired.css",
+      "size": 12356,
+      "lastModified": "10/20/2025, 9:03:45 PM"
+    },
+    {
+      "name": "optimized-styles",
+      "title": "optimized-styles",
+      "description": "Hoja de estilos CSS",
+      "type": "css",
+      "file": "public/css/optimized-styles.css",
+      "size": 21952,
+      "lastModified": "10/20/2025, 12:12:12 PM"
+    },
+    {
+      "name": "styles",
+      "title": "styles",
+      "description": "Hoja de estilos CSS",
+      "type": "css",
+      "file": "public/css/styles.css",
+      "size": 19429,
+      "lastModified": "10/19/2025, 8:37:58 PM"
+    },
+    {
+      "name": "unified-dashboard",
+      "title": "unified-dashboard",
+      "description": "Hoja de estilos CSS",
+      "type": "css",
+      "file": "public/css/unified-dashboard.css",
+      "size": 9028,
+      "lastModified": "10/19/2025, 10:35:25 PM"
+    },
+    {
+      "name": "unified-navigation",
+      "title": "unified-navigation",
+      "description": "Hoja de estilos CSS",
+      "type": "css",
+      "file": "public/css/unified-navigation.css",
+      "size": 7826,
+      "lastModified": "10/23/2025, 1:59:02 PM"
+    }
+  ]
+}

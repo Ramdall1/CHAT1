@@ -1,0 +1,9 @@
+{
+  "autoStart": true,
+  "healthCheckInterval": 60000,
+  "autoBackupInterval": 3600000,
+  "statsReportInterval": 1800000,
+  "enableAutoRecovery": true,
+  "maxStartupRetries": 3,
+  "startupTimeout": 30000
+}

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprobación de Plantillas - ChatBot Pro</title>
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/design-system.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .approvals-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .approvals-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e2e8f0;
+            background: #f8fafc;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .approval-tabs {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            padding: 0 20px;
+            background: white;
+        }
+
+        .approval-tab {
+            padding: 15px 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: #6b7280;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .approval-tab:hover {
+            color: #374151;
+        }
+
+        .approval-tab.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+        }
+
+        .approval-tab .badge {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            border-radius: 12px;
+            padding: 2px 8px;
+            font-size: 12px;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+
+        .approval-tab.active .badge {
+            background: #3b82f6;
+        }
+
+        .approvals-content {
+            padding: 20px;
+        }
+
+        .approval-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .approval-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .approval-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 12px;
+        }
+
+        .approval-card-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: #111827;
+            margin: 0;
+        }
+
+        .approval-status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .approval-status-badge.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .approval-status-badge.approved {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .approval-status-badge.rejected {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+
+        .approval-card-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .approval-card-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .approval-card-meta-item strong {
+            color: #374151;
+        }
+
+        .approval-card-content {
+            background: #f9fafb;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #374151;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .approval-card-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .approval-card-actions button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-approve {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-approve:hover {
+            background: #059669;
+        }
+
+        .btn-reject {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-reject:hover {
+            background: #dc2626;
+        }
+
+        .btn-view {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-view:hover {
+            background: #2563eb;
+        }
+
+        .approval-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card.pending {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .stat-card.approved {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .stat-card.rejected {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        .stat-card-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .stat-card-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal.active,
+        .modal-overlay.active {
+            display: block;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .modal-content {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #374151;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .modal-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-cancel {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-cancel:hover {
+            background: #d1d5db;
+        }
+
+        .btn-submit {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background: #2563eb;
+        }
+
+        .validation-score {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .validation-score-bar {
+            flex: 1;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .validation-score-fill {
+            height: 100%;
+            background: #10b981;
+            transition: width 0.3s;
+        }
+
+        .validation-score-text {
+            font-weight: 600;
+            font-size: 14px;
+            color: #374151;
+            min-width: 40px;
+        }
+
+        .validation-errors {
+            background: #fee2e2;
+            border: 1px solid #fca5a5;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+            color: #7f1d1d;
+            font-size: 14px;
+        }
+
+        .validation-errors ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .validation-errors li {
+            margin-bottom: 4px;
+        }
+
+        .validation-warnings {
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+            color: #92400e;
+            font-size: 14px;
+        }
+
+        .validation-warnings ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .validation-warnings li {
+            margin-bottom: 4px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #e5e7eb;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-comments"></i>
+                    <span>ChatBot Pro</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="/dashboard" class="menu-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/chat-live" class="menu-item">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Chat en Vivo</span>
+                </a>
+                <a href="/contacts" class="menu-item">
+                    <i class="fas fa-address-book"></i>
+                    <span>Contactos</span>
+                </a>
+                <a href="/campaigns" class="menu-item">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Campañas</span>
+                </a>
+                <a href="/template-approvals" class="menu-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Aprobaciones</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div class="content-header">
+                <div class="header-title">
+                    <h1><i class="fas fa-check-circle"></i> Aprobación de Plantillas</h1>
+                    <p>Gestiona la aprobación de plantillas de WhatsApp</p>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="approval-stats" id="approvalStats">
+                <div class="stat-card">
+                    <div class="stat-card-value" id="totalCount">0</div>
+                    <div class="stat-card-label">Total</div>
+                </div>
+                <div class="stat-card pending">
+                    <div class="stat-card-value" id="pendingCount">0</div>
+                    <div class="stat-card-label">Pendientes</div>
+                </div>
+                <div class="stat-card approved">
+                    <div class="stat-card-value" id="approvedCount">0</div>
+                    <div class="stat-card-label">Aprobadas</div>
+                </div>
+                <div class="stat-card rejected">
+                    <div class="stat-card-value" id="rejectedCount">0</div>
+                    <div class="stat-card-label">Rechazadas</div>
+                </div>
+            </div>
+
+            <!-- Approvals Container -->
+            <div class="approvals-container">
+                <!-- Tabs -->
+                <div class="approval-tabs">
+                    <button class="approval-tab active" data-tab="pending">
+                        <i class="fas fa-hourglass-half"></i> Pendientes
+                        <span class="badge" id="pendingBadge">0</span>
+                    </button>
+                    <button class="approval-tab" data-tab="approved">
+                        <i class="fas fa-check"></i> Aprobadas
+                        <span class="badge" id="approvedBadge">0</span>
+                    </button>
+                    <button class="approval-tab" data-tab="rejected">
+                        <i class="fas fa-times"></i> Rechazadas
+                        <span class="badge" id="rejectedBadge">0</span>
+                    </button>
+                </div>
+
+                <!-- Content -->
+                <div class="approvals-content">
+                    <div id="pendingContent" class="tab-content active"></div>
+                    <div id="approvedContent" class="tab-content"></div>
+                    <div id="rejectedContent" class="tab-content"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Approval Modal -->
+    <div class="modal-overlay" id="approvalModalOverlay"></div>
+    <div class="modal" id="approvalModal">
+        <div class="modal-header">
+            <h3 id="approvalModalTitle">Detalles de Plantilla</h3>
+            <button class="btn-icon" id="closeApprovalModal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-content" id="approvalModalContent">
+            <!-- Content will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Approval Action Modal -->
+    <div class="modal-overlay" id="actionModalOverlay"></div>
+    <div class="modal" id="actionModal">
+        <div class="modal-header">
+            <h3 id="actionModalTitle">Acción</h3>
+            <button class="btn-icon" id="closeActionModal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-content">
+            <div class="form-group">
+                <label for="actionNotes">Notas (opcional)</label>
+                <textarea id="actionNotes" placeholder="Escribe tus notas aquí..."></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" id="cancelActionBtn">Cancelar</button>
+                <button class="btn-submit" id="submitActionBtn">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/utils/helpers.js"></script>
+    <script src="/js/template-approvals.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof TemplateApprovalsManager !== 'undefined') {
+                window.approvalsManager = new TemplateApprovalsManager();
+            } else {
+                console.error('TemplateApprovalsManager no está definido');
+            }
+        });
+    </script>
+</body>
+</html>

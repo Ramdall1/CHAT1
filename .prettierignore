@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+coverage/
+test-reports/
+
+# Logs
+logs/
+custom-logs/
+*.log
+
+# Cache
+.jest-cache/
+.eslintcache
+.cache/
+
+# Generated files
+*.min.js
+*.min.css
+*.bundle.js
+
+# Documentation
+CHANGELOG.md
+LICENSE
+
+# Configuration files that should maintain their format
+.env*
+.gitignore
+.dockerignore
+
+# Binary files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.svg
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db

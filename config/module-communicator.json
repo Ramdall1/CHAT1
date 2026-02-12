@@ -1,0 +1,8 @@
+{
+  "autoRetry": true,
+  "maxRetries": 3,
+  "retryDelay": 1000,
+  "healthCheckInterval": 30000,
+  "eventTimeout": 10000,
+  "logLevel": "info"
+}

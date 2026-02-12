@@ -1,0 +1,146 @@
+/**
+ * Estilos para Status de Mensajes (como WhatsApp)
+ */
+
+/* Contenedor del status */
+.message-status {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Status: Enviado (✓ gris) */
+.message-status.status-sent {
+  color: #999999;
+}
+
+.message-status.status-sent:hover {
+  opacity: 0.8;
+}
+
+/* Status: Entregado (✓✓ gris) */
+.message-status.status-delivered {
+  color: #999999;
+}
+
+.message-status.status-delivered:hover {
+  opacity: 0.8;
+}
+
+/* Status: Leído (✓✓ azul) */
+.message-status.status-read {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.message-status.status-read:hover {
+  color: #0056b3;
+  opacity: 0.9;
+}
+
+/* Status: Error (✗ rojo) */
+.message-status.status-failed {
+  color: #dc3545;
+}
+
+.message-status.status-failed:hover {
+  opacity: 0.8;
+}
+
+/* Animación de actualización */
+@keyframes statusUpdate {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.message-status.status-updated {
+  animation: statusUpdate 0.3s ease;
+}
+
+/* Tooltip con información del status */
+.message-status[title] {
+  position: relative;
+}
+
+.message-status[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: normal;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.message-status[title]:hover::before {
+  content: '';
+  position: absolute;
+  bottom: 115%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: #333;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* En mensajes salientes */
+.message.outgoing .message-footer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #666;
+}
+
+.message.outgoing .message-time {
+  font-size: 12px;
+  color: #999;
+}
+
+.message.outgoing .message-status {
+  margin-left: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .message-status {
+    font-size: 11px;
+  }
+  
+  .message-status[title]:hover::after {
+    font-size: 10px;
+  }
+}
+
+/* Dark mode (opcional) */
+@media (prefers-color-scheme: dark) {
+  .message-status[title]:hover::after {
+    background: #555;
+  }
+  
+  .message-status[title]:hover::before {
+    border-top-color: #555;
+  }
+}

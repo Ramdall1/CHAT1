@@ -1,0 +1,132 @@
+/* Font Awesome Fallback - Iconos esenciales para el dashboard */
+
+/* Base para iconos */
+.fas, .far, .fab {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif;
+    font-weight: 900;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+/* Iconos específicos usando Unicode */
+.fa-home::before { content: "🏠"; }
+.fa-chart-bar::before { content: "📊"; }
+.fa-users::before { content: "👥"; }
+.fa-comments::before { content: "💬"; }
+.fa-cog::before, .fa-settings::before { content: "⚙️"; }
+.fa-bell::before { content: "🔔"; }
+.fa-user::before { content: "👤"; }
+.fa-search::before { content: "🔍"; }
+.fa-plus::before { content: "➕"; }
+.fa-edit::before { content: "✏️"; }
+.fa-trash::before { content: "🗑️"; }
+.fa-eye::before { content: "👁️"; }
+.fa-download::before { content: "⬇️"; }
+.fa-upload::before { content: "⬆️"; }
+.fa-save::before { content: "💾"; }
+.fa-check::before { content: "✅"; }
+.fa-times::before { content: "❌"; }
+.fa-arrow-left::before { content: "⬅️"; }
+.fa-arrow-right::before { content: "➡️"; }
+.fa-arrow-up::before { content: "⬆️"; }
+.fa-arrow-down::before { content: "⬇️"; }
+.fa-play::before { content: "▶️"; }
+.fa-pause::before { content: "⏸️"; }
+.fa-stop::before { content: "⏹️"; }
+.fa-refresh::before { content: "🔄"; }
+.fa-sync::before { content: "🔄"; }
+.fa-link::before { content: "🔗"; }
+.fa-external-link::before { content: "🔗"; }
+.fa-file::before { content: "📄"; }
+.fa-folder::before { content: "📁"; }
+.fa-image::before { content: "🖼️"; }
+.fa-video::before { content: "🎥"; }
+.fa-music::before { content: "🎵"; }
+.fa-phone::before { content: "📞"; }
+.fa-envelope::before { content: "✉️"; }
+.fa-calendar::before { content: "📅"; }
+.fa-clock::before { content: "🕐"; }
+.fa-star::before { content: "⭐"; }
+.fa-heart::before { content: "❤️"; }
+.fa-thumbs-up::before { content: "👍"; }
+.fa-thumbs-down::before { content: "👎"; }
+.fa-info::before { content: "ℹ️"; }
+.fa-warning::before, .fa-exclamation-triangle::before { content: "⚠️"; }
+.fa-question::before { content: "❓"; }
+.fa-lock::before { content: "🔒"; }
+.fa-unlock::before { content: "🔓"; }
+.fa-key::before { content: "🔑"; }
+.fa-shield::before { content: "🛡️"; }
+.fa-globe::before { content: "🌐"; }
+.fa-wifi::before { content: "📶"; }
+.fa-signal::before { content: "📶"; }
+.fa-battery-full::before { content: "🔋"; }
+.fa-plug::before { content: "🔌"; }
+.fa-power-off::before { content: "⏻"; }
+.fa-print::before { content: "🖨️"; }
+.fa-copy::before { content: "📋"; }
+.fa-cut::before { content: "✂️"; }
+.fa-paste::before { content: "📋"; }
+.fa-undo::before { content: "↶"; }
+.fa-redo::before { content: "↷"; }
+.fa-bold::before { content: "B"; font-weight: bold; }
+.fa-italic::before { content: "I"; font-style: italic; }
+.fa-underline::before { content: "U"; text-decoration: underline; }
+.fa-list::before { content: "📋"; }
+.fa-list-ul::before { content: "📋"; }
+.fa-list-ol::before { content: "📋"; }
+.fa-table::before { content: "📊"; }
+.fa-th::before { content: "⊞"; }
+.fa-th-list::before { content: "☰"; }
+.fa-bars::before { content: "☰"; }
+.fa-menu::before { content: "☰"; }
+.fa-ellipsis-v::before { content: "⋮"; }
+.fa-ellipsis-h::before { content: "⋯"; }
+.fa-sort::before { content: "⇅"; }
+.fa-sort-up::before { content: "⇈"; }
+.fa-sort-down::before { content: "⇊"; }
+.fa-filter::before { content: "🔽"; }
+.fa-expand::before { content: "⛶"; }
+.fa-compress::before { content: "⛶"; }
+.fa-maximize::before { content: "⛶"; }
+.fa-minimize::before { content: "⛶"; }
+
+/* Iconos de redes sociales */
+.fa-whatsapp::before { content: "📱"; }
+.fa-telegram::before { content: "✈️"; }
+.fa-facebook::before { content: "📘"; }
+.fa-instagram::before { content: "📷"; }
+.fa-twitter::before { content: "🐦"; }
+.fa-linkedin::before { content: "💼"; }
+.fa-youtube::before { content: "📺"; }
+
+/* Iconos específicos del dashboard */
+.fa-tachometer-alt::before, .fa-dashboard::before { content: "📊"; }
+.fa-project-diagram::before { content: "🔀"; }
+.fa-robot::before { content: "🤖"; }
+.fa-message::before { content: "💬"; }
+.fa-analytics::before { content: "📈"; }
+.fa-broadcast::before { content: "📡"; }
+.fa-flow::before { content: "🔀"; }
+.fa-template::before { content: "📄"; }
+.fa-integration::before { content: "🔗"; }
+
+/* Tamaños de iconos */
+.fa-xs { font-size: 0.75em; }
+.fa-sm { font-size: 0.875em; }
+.fa-lg { font-size: 1.33333em; }
+.fa-xl { font-size: 1.5em; }
+.fa-2x { font-size: 2em; }
+.fa-3x { font-size: 3em; }
+
+/* Utilidades */
+.fa-fw { width: 1.25em; text-align: center; }
+.fa-spin { animation: fa-spin 2s infinite linear; }
+
+@keyframes fa-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,2057 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación de Componentes - ChatBot</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 20px; background: #f8f9fa; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { background: white; border-radius: 8px; padding: 30px; margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .component { background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .component-header { display: flex; justify-content: between; align-items: center; margin-bottom: 15px; }
+        .component-name { font-size: 1.3em; font-weight: bold; color: #007bff; }
+        .component-type { background: #007bff; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8em; margin-left: 10px; }
+        .component-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+        .meta-item { background: #f8f9fa; padding: 10px; border-radius: 5px; }
+        .meta-label { font-weight: bold; color: #6c757d; font-size: 0.9em; }
+        .meta-value { color: #333; }
+        .stats { display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap; }
+        .stat { background: #e9ecef; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; }
+        .filter-bar { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .filter-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+        .filter-btn { background: #e9ecef; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; transition: all 0.3s; }
+        .filter-btn.active { background: #007bff; color: white; }
+        .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .summary-item { background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .summary-number { font-size: 2em; font-weight: bold; color: #007bff; }
+        .summary-label { color: #6c757d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧩 Documentación de Componentes</h1>
+            <p>Catálogo completo de componentes del sistema ChatBot</p>
+            <p><strong>Generado:</strong> 10/23/2025, 8:09:47 PM</p>
+        </div>
+        
+        <div class="summary">
+            <div class="summary-item">
+                <div class="summary-number">77</div>
+                <div class="summary-label">Total Componentes</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-number">39</div>
+                <div class="summary-label">HTML</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-number">26</div>
+                <div class="summary-label">JavaScript</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-number">12</div>
+                <div class="summary-label">CSS</div>
+            </div>
+        </div>
+        
+        <div class="filter-bar">
+            <h3>Filtrar por tipo:</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterComponents('all')">Todos</button>
+                <button class="filter-btn" onclick="filterComponents('html')">HTML</button>
+                <button class="filter-btn" onclick="filterComponents('javascript')">JavaScript</button>
+                <button class="filter-btn" onclick="filterComponents('css')">CSS</button>
+            </div>
+        </div>
+        
+        <div id="components-container">
+            
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Configuración General - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/admin-dashboard.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">21700 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 11:58:54 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 7</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 0</span><span class="stat">selects: 1</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">IA Conversacional - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/ai-admin-dashboard.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">19590 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 6:03:16 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 7</span><span class="stat">forms: 1</span><span class="stat">inputs: 7</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 1</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Analytics Avanzado - ChatBot</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/analytics.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">17469 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 1:59:41 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 0</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Backup - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/backup-dashboard.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">26778 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 11:58:54 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 15</span><span class="stat">forms: 3</span><span class="stat">inputs: 14</span><span class="stat">links: 0</span><span class="stat">selects: 1</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Difusión Masiva - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/broadcast-manager.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">28783 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 11:58:54 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 13</span><span class="stat">forms: 0</span><span class="stat">inputs: 7</span><span class="stat">links: 14</span><span class="stat">selects: 0</span><span class="stat">textareas: 1</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Comparación Dashboard - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/comparacion-dashboard.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">13130 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 1:40:25 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 6</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Gestión de Contactos - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/contacts-dashboard.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">34746 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 6:03:45 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 30</span><span class="stat">forms: 3</span><span class="stat">inputs: 14</span><span class="stat">links: 0</span><span class="stat">selects: 9</span><span class="stat">textareas: 3</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Gestión de Contactos - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/contacts-manager.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">26918 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 11:58:54 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 21</span><span class="stat">forms: 1</span><span class="stat">inputs: 8</span><span class="stat">links: 14</span><span class="stat">selects: 3</span><span class="stat">textareas: 1</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Dashboard Moderno - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/dashboard-modern.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">27666 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 6:05:33 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 10</span><span class="stat">forms: 0</span><span class="stat">inputs: 1</span><span class="stat">links: 14</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Dashboard ChatBot Pro - Optimizado</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Dashboard principal de ChatBot Pro - Sistema de gestión de conversaciones</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/dashboard-optimizado.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">27569 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 1:50:20 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 11</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Dashboard Simple - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/dashboard-simple.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">13344 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 1:22:14 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 4</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Dashboard - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/dashboard.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">147040 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 3:39:19 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 4</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 5</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Debug Dashboard - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/debug-dashboard.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">17245 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 1:23:55 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 9</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Chat-Bot-1 — Diseño Inspirado en ManyChat</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/design-preview.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">14390 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 9:54:42 AM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 15</span><span class="stat">forms: 0</span><span class="stat">inputs: 1</span><span class="stat">links: 3</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Diagnóstico de Aplicación</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/diagnostico.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">15088 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 1:19:18 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 15</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Flow Builder Pro - ChatBot</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/flow-builder-pro.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">21812 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 11:58:54 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 13</span><span class="stat">forms: 0</span><span class="stat">inputs: 7</span><span class="stat">links: 0</span><span class="stat">selects: 1</span><span class="stat">textareas: 1</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Constructor Avanzado de Flujos - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/flows-advanced.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">25992 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 11:58:54 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 16</span><span class="stat">forms: 0</span><span class="stat">inputs: 4</span><span class="stat">links: 1</span><span class="stat">selects: 3</span><span class="stat">textareas: 2</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Constructor de Flujos - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/flows.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">20383 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 10:20:43 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 4</span><span class="stat">forms: 0</span><span class="stat">inputs: 6</span><span class="stat">links: 0</span><span class="stat">selects: 1</span><span class="stat">textareas: 2</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">ChatBot Pro - Plataforma Completa de Automatización</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/index-manychat.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">24946 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 6:05:44 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 0</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 20</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Chat-Bot-1 — Panel Profesional</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/index.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">48541 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 3:11:15 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 23</span><span class="stat">forms: 0</span><span class="stat">inputs: 6</span><span class="stat">links: 0</span><span class="stat">selects: 3</span><span class="stat">textareas: 2</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Integraciones - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/integrations-dashboard.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">28016 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 11:58:54 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 21</span><span class="stat">forms: 3</span><span class="stat">inputs: 6</span><span class="stat">links: 0</span><span class="stat">selects: 3</span><span class="stat">textareas: 1</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Integraciones - Chat Bot System</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/integrations.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">36355 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 1:59:51 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 21</span><span class="stat">forms: 1</span><span class="stat">inputs: 3</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 1</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Chat en Vivo - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/live-chat-pro.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">33087 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 11:58:54 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 16</span><span class="stat">forms: 0</span><span class="stat">inputs: 2</span><span class="stat">links: 14</span><span class="stat">selects: 0</span><span class="stat">textareas: 2</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Chat Bot - Diseño Inspirado en ManyChat</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/manychat-demo.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">20202 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 6:05:50 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 7</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 8</span><span class="stat">selects: 0</span><span class="stat">textareas: 1</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Cola de Mensajes - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/message-queue-dashboard.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">25131 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 11:58:54 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 15</span><span class="stat">forms: 3</span><span class="stat">inputs: 4</span><span class="stat">links: 0</span><span class="stat">selects: 5</span><span class="stat">textareas: 2</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Demo Multimedia - Chat Bot Sistema</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/multimedia-demo.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">21605 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 11:58:54 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 10</span><span class="stat">forms: 0</span><span class="stat">inputs: 15</span><span class="stat">links: 0</span><span class="stat">selects: 3</span><span class="stat">textareas: 0</span><span class="stat">images: 1</span><span class="stat">videos: 1</span><span class="stat">audios: 1</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Notificaciones - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/notifications-dashboard.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">23812 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 6:05:39 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 5</span><span class="stat">forms: 0</span><span class="stat">inputs: 1</span><span class="stat">links: 0</span><span class="stat">selects: 1</span><span class="stat">textareas: 1</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Monitor de Rendimiento - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/performance-monitor.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">29890 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 6:05:16 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 1</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Reportes - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/reports-dashboard.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">41261 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 11:58:54 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 34</span><span class="stat">forms: 4</span><span class="stat">inputs: 5</span><span class="stat">links: 0</span><span class="stat">selects: 6</span><span class="stat">textareas: 4</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Sandbox Demo - Chat Bot</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/sandbox-demo.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">18512 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 6:05:27 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 9</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 0</span><span class="stat">selects: 1</span><span class="stat">textareas: 1</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Chat Bot - Panel de Control</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/simple-index.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">5869 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 10:14:36 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 0</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 4</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Template Pacing Dashboard - 360 Dialog</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/template-pacing.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">13530 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 9:00:19 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 5</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Plantillas y Automatizaciones - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/templates-automation.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">32578 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 11:58:54 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 31</span><span class="stat">forms: 0</span><span class="stat">inputs: 5</span><span class="stat">links: 14</span><span class="stat">selects: 1</span><span class="stat">textareas: 1</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Plantillas WhatsApp - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/templates-dashboard.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">28747 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 6:04:30 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 16</span><span class="stat">forms: 2</span><span class="stat">inputs: 7</span><span class="stat">links: 0</span><span class="stat">selects: 4</span><span class="stat">textareas: 5</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Plantillas de Flujos - WhatsApp Bot</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/templates.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">20414 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 1:59:30 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 5</span><span class="stat">forms: 0</span><span class="stat">inputs: 1</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Prueba Simple - ChatBot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/test-simple.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">7411 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 1:20:44 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 7</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Prueba Socket.IO</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/test-socketio.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">5880 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 2:25:08 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 4</span><span class="stat">forms: 0</span><span class="stat">inputs: 2</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Página de Prueba</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/test.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">3627 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 1:16:59 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 3</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="html">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Constructor Visual de Flujos - WhatsApp Bot Pro</span>
+                        <span class="component-type">HTML</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Sin descripción</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/visual-flow-builder.html</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">18919 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 1:54:30 PM</div>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <span class="stat">buttons: 9</span><span class="stat">forms: 0</span><span class="stat">inputs: 0</span><span class="stat">links: 0</span><span class="stat">selects: 0</span><span class="stat">textareas: 0</span><span class="stat">images: 0</span><span class="stat">videos: 0</span><span class="stat">audios: 0</span>
+                </div>
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Modelo de Respuesta de IA</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Define la estructura y validación para respuestas generadas por IA,</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/ai/models/AIResponse.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">8485 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:09:14 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Servicio de IA</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Encapsula la lógica de negocio para interacciones con IA,</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/ai/services/AIService.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">22847 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 2:55:46 PM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Controlador de Automatización</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Maneja las peticiones HTTP relacionadas con reglas de automatización,</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/automation/controllers/AutomationController.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">16363 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:08:25 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Modelo de Regla de Automatización</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Define la estructura y validación para reglas de automatización</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/automation/models/Rule.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">16078 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:09:39 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Rutas de Automatización</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Define todas las rutas HTTP para la gestión de reglas de automatización,</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/automation/routes/automationRoutes.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">8921 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:10:19 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Servicio de Automatización</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Maneja toda la lógica de negocio relacionada con reglas de automatización,</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/automation/services/AutomationService.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">17896 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:12:13 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Contact Controller</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Extrae la lógica de las rutas y la delega al servicio de contactos.</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/contacts/controllers/ContactController.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">5461 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:08:38 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Modelo de Contacto</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Define la estructura y validaciones para los contactos</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/contacts/models/Contact.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">7965 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:09:51 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Rutas de Contactos Unificadas</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> @author Chat-Bot-1-2 Team</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/contacts/routes/contactRoutes.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">1507 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:10:32 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Servicio de Contactos Unificado</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Maneja toda la lógica de negocio para contactos, etiquetas, campos personalizados y segmentos.</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/contacts/services/ContactService.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">14320 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:11:58 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Message Controller</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Orquesta las solicitudes HTTP para la mensajería.</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/messaging/controllers/MessageController.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">2802 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:08:49 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Modelo de Mensaje</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Define la estructura y validaciones para los mensajes</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/messaging/models/Message.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">10779 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:09:27 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Rutas de Mensajes</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Define todas las rutas HTTP para la gestión de mensajes,</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/messaging/routes/messageRoutes.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">7175 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:10:47 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Servicio de Mensajes</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Maneja toda la lógica de negocio relacionada con mensajes,</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/messaging/services/MessageService.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">28387 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:17:21 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Template Controller</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Maneja las solicitudes HTTP para el módulo de plantillas,</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/templates/templateController.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">3974 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:15:55 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Template Routes</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Define las rutas para el API de plantillas.</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/templates/templateRoutes.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">1012 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:11:05 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Template Service</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Encapsula la lógica de negocio para la gestión de plantillas.</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/templates/templateService.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">5261 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:16:53 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">WABA Helpers</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Funciones de ayuda para interactuar con la API de 360dialog (WABA).</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/templates/wabaHelpers.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">1936 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 12:00:15 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Universal Logger - Sistema universal de logging y monitoreo</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Registra logs, mide tiempo de ejecución y detecta errores silenciosos</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/business/universal_logger.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">20614 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:38:16 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">AlertManager - Gestor de Alertas del Sistema</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Gestiona alertas del sistema, notificaciones, escalamiento</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/ui/AlertManager.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">34397 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:38:16 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Dashboard Principal - Sistema de Visualización y Monitoreo</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Dashboard en tiempo real para monitorear el estado del sistema event-driven,</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/ui/Dashboard.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">28653 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:15:00 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">EventMonitor - Monitor de Eventos en Tiempo Real</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Monitorea, analiza y procesa eventos del sistema en tiempo real</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/ui/EventMonitor.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">30128 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:15:13 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">MetricsCollector - Recopilador de Métricas del Sistema</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Recopila, procesa y almacena métricas del sistema en tiempo real</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/ui/MetricsCollector.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">28281 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:15:07 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">PerformanceAnalyzer - Analizador de Rendimiento del Sistema</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Analiza el rendimiento del sistema, identifica cuellos de botella,</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/ui/PerformanceAnalyzer.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">43785 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:15:32 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">SystemHealthMonitor - Monitor de Salud del Sistema</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Monitorea la salud general del sistema, componentes y servicios,</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/ui/SystemHealthMonitor.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">33484 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:15:19 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="javascript">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">Dashboard Module - Índice Principal</span>
+                        <span class="component-type">JAVASCRIPT</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Centraliza todas las exportaciones del sistema de dashboard</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">src/components/ui/index.js</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">9843 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 11:15:42 AM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="css">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">bootstrap-fallback</span>
+                        <span class="component-type">CSS</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Hoja de estilos CSS</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/css/bootstrap-fallback.css</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">2674 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 3:28:57 PM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="css">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">components</span>
+                        <span class="component-type">CSS</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Hoja de estilos CSS</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/css/components.css</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">25074 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/22/2025, 6:01:46 PM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="css">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">dashboard-modern</span>
+                        <span class="component-type">CSS</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Hoja de estilos CSS</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/css/dashboard-modern.css</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">14636 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 11:12:59 PM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="css">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">enhanced-styles</span>
+                        <span class="component-type">CSS</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Hoja de estilos CSS</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/css/enhanced-styles.css</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">13486 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/19/2025, 7:19:17 PM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="css">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">flow-builder-enhanced</span>
+                        <span class="component-type">CSS</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Hoja de estilos CSS</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/css/flow-builder-enhanced.css</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">12574 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 10:51:24 PM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="css">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">fontawesome-fallback</span>
+                        <span class="component-type">CSS</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Hoja de estilos CSS</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/css/fontawesome-fallback.css</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">4951 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 3:29:22 PM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="css">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">manychat-components</span>
+                        <span class="component-type">CSS</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Hoja de estilos CSS</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/css/manychat-components.css</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">11189 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 10:22:43 PM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="css">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">manychat-inspired</span>
+                        <span class="component-type">CSS</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Hoja de estilos CSS</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/css/manychat-inspired.css</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">12356 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 9:03:45 PM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="css">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">optimized-styles</span>
+                        <span class="component-type">CSS</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Hoja de estilos CSS</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/css/optimized-styles.css</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">21952 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/20/2025, 12:12:12 PM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="css">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">styles</span>
+                        <span class="component-type">CSS</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Hoja de estilos CSS</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/css/styles.css</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">19429 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/19/2025, 8:37:58 PM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="css">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">unified-dashboard</span>
+                        <span class="component-type">CSS</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Hoja de estilos CSS</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/css/unified-dashboard.css</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">9028 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/19/2025, 10:35:25 PM</div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="component" data-type="css">
+                <div class="component-header">
+                    <div>
+                        <span class="component-name">unified-navigation</span>
+                        <span class="component-type">CSS</span>
+                    </div>
+                </div>
+                <div><strong>Descripción:</strong> Hoja de estilos CSS</div>
+                <div class="component-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Archivo</div>
+                        <div class="meta-value">public/css/unified-navigation.css</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Tamaño</div>
+                        <div class="meta-value">7826 bytes</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Última modificación</div>
+                        <div class="meta-value">10/23/2025, 1:59:02 PM</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function filterComponents(type) {
+            const components = document.querySelectorAll('.component');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            components.forEach(component => {
+                if (type === 'all' || component.dataset.type === type) {
+                    component.style.display = 'block';
+                } else {
+                    component.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+/**
+ * Estilos para campos personalizados
+ */
+
+/* Contenedor de campos personalizados */
+.custom-fields-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+    min-height: 32px;
+}
+
+/* Campo personalizado individual */
+.custom-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 10px;
+    background: #f3f4f6;
+    border-radius: 6px;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.custom-field:hover {
+    background: #e5e7eb;
+}
+
+/* Valor editable */
+.editable-field-value {
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.editable-field-value:hover {
+    background: #d1d5db;
+}
+
+.inline-edit-input-value {
+    width: 100%;
+    padding: 4px;
+    border: 1px solid #3b82f6;
+    border-radius: 4px;
+    font-size: 13px;
+    outline: none;
+    background: white;
+}
+
+/* Etiqueta del campo */
+.custom-field-label {
+    color: #4b5563;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+/* Valor del campo */
+.custom-field-value {
+    color: #1f2937;
+    word-break: break-word;
+}
+
+/* Botón para añadir campo personalizado */
+.btn-add-custom-field {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    transition: all 0.2s;
+    margin-bottom: 12px;
+}
+
+.btn-add-custom-field:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.btn-add-custom-field:active {
+    transform: scale(0.98);
+}
+
+.btn-add-custom-field i {
+    font-size: 14px;
+}
+
+/* Modal de campos personalizados */
+.custom-fields-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.2s;
+}
+
+.custom-fields-modal-overlay.active {
+    display: flex;
+}
+
+.custom-fields-modal {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s;
+}
+
+/* Header del modal */
+.custom-fields-modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-fields-modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* Body del modal */
+.custom-fields-modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Tabs del modal */
+.custom-fields-tabs {
+    display: flex;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 20px;
+}
+
+.custom-fields-tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #6b7280;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.custom-fields-tab.active {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+}
+
+/* Tabla de campos personalizados */
+.custom-fields-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-fields-table th,
+.custom-fields-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.custom-fields-table th {
+    font-weight: 600;
+    color: #4b5563;
+    background: #f9fafb;
+}
+
+/* Campos editables */
+.editable-field-name,
+.editable-field-desc {
+    cursor: pointer;
+    transition: background 0.2s;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.editable-field-name:hover,
+.editable-field-desc:hover {
+    background: #f3f4f6;
+}
+
+.inline-edit-input {
+    width: 100%;
+    padding: 4px 8px;
+    border: 1px solid #3b82f6;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+}
+
+/* Barra de herramientas */
+.custom-fields-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+/* Botón para crear nuevo campo */
+.btn-new-custom-field {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.btn-new-custom-field:hover {
+    background: #2563eb;
+}
+
+/* Botón para eliminar seleccionados */
+.btn-delete-selected {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.btn-delete-selected:hover {
+    background: #dc2626;
+}
+
+/* Campo vacío */
+.empty-custom-fields {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6b7280;
+}
+
+.empty-custom-fields i {
+    font-size: 48px;
+    color: #d1d5db;
+    margin-bottom: 16px;
+}
+
+/* Formulario para añadir/editar campo */
+.custom-field-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #374151;
+}
+
+.form-control {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Acciones del formulario */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* Botones de acción */
+.btn-action {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: #6b7280;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-action:hover {
+    color: #1f2937;
+}
+
+.btn-action.edit:hover {
+    color: #3b82f6;
+}
+
+.btn-action.delete:hover {
+    color: #ef4444;
+}
+
+/* Estado vacío */
+.empty-state-text {
+    color: #9ca3af;
+    font-size: 14px;
+    font-style: italic;
+    margin: 8px 0;
+    text-align: center;
+}
+
+/* Contenedor de campos personalizados compactos */
+.contact-custom-fields-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+/* Campo personalizado compacto */
+.contact-custom-field-compact {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: #f3f4f6;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #374151;
+    white-space: normal;
+    flex-wrap: wrap;
+}
+
+.contact-custom-field-compact strong {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* Botón de eliminar campo compacto */
+.remove-custom-field-btn-compact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.2s;
+    font-size: 12px;
+}
+
+.remove-custom-field-btn-compact:hover {
+    background: #e5e7eb;
+    color: #ef4444;
+}
+
+/* Input inline para campos personalizados */
+.inline-custom-field-input {
+    border: 1px solid #d1d5db !important;
+    border-radius: 4px !important;
+    padding: 4px 6px !important;
+    font-size: 12px !important;
+    background: white !important;
+    color: #1f2937 !important;
+}
+
+.inline-custom-field-input:focus {
+    outline: none !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1) !important;
+}

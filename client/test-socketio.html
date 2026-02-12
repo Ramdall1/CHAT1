@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba Socket.IO - ChatBot Enterprise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .connected { background-color: #d4edda; color: #155724; }
+        .disconnected { background-color: #f8d7da; color: #721c24; }
+        .message {
+            background-color: #e7f3ff;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+        #log {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Prueba Socket.IO - ChatBot Enterprise</h1>
+        
+        <div id="status" class="status disconnected">
+            ❌ Desconectado
+        </div>
+
+        <div class="controls">
+            <h3>Controles de Prueba</h3>
+            <button onclick="connectSocket()">Conectar</button>
+            <button onclick="disconnectSocket()">Desconectar</button>
+            <button onclick="testPing()">Ping</button>
+            <br>
+            <input type="text" id="roomInput" placeholder="Nombre de sala" value="test-room">
+            <button onclick="joinRoom()">Unirse a Sala</button>
+            <button onclick="leaveRoom()">Salir de Sala</button>
+            <br>
+            <input type="text" id="messageInput" placeholder="Mensaje de prueba" value="Hola desde el cliente">
+            <button onclick="sendMessage()">Enviar Mensaje</button>
+        </div>
+
+        <div class="log-section">
+            <h3>Log de Eventos</h3>
+            <div id="log"></div>
+            <button onclick="clearLog()">Limpiar Log</button>
+        </div>
+    </div>
+
+    <!-- Socket.IO Client -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = null;
+        const statusDiv = document.getElementById('status');
+        const logDiv = document.getElementById('log');
+
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function updateStatus(connected, message) {
+            if (connected) {
+                statusDiv.className = 'status connected';
+                statusDiv.innerHTML = '✅ ' + message;
+            } else {
+                statusDiv.className = 'status disconnected';
+                statusDiv.innerHTML = '❌ ' + message;
+            }
+        }
+
+        function connectSocket() {
+            if (socket && socket.connected) {
+                log('⚠️ Ya está conectado');
+                return;
+            }
+
+            log('🔄 Intentando conectar...');
+            socket = io();
+
+            socket.on('connect', () => {
+                log('✅ Conectado con ID: ' + socket.id);
+                updateStatus(true, 'Conectado - ID: ' + socket.id);
+            });
+
+            socket.on('disconnect', (reason) => {
+                log('❌ Desconectado: ' + reason);
+                updateStatus(false, 'Desconectado: ' + reason);
+            });
+
+            socket.on('connect_error', (error) => {
+                log('❌ Error de conexión: ' + error.message);
+                updateStatus(false, 'Error de conexión');
+            });
+
+            socket.on('pong', (data) => {
+                log('🏓 Pong recibido: ' + JSON.stringify(data));
+            });
+
+            socket.on('message', (data) => {
+                log('📨 Mensaje recibido: ' + JSON.stringify(data));
+            });
+
+            socket.on('room_joined', (room) => {
+                log('🏠 Te uniste a la sala: ' + room);
+            });
+
+            socket.on('room_left', (room) => {
+                log('🚪 Saliste de la sala: ' + room);
+            });
+        }
+
+        function disconnectSocket() {
+            if (socket) {
+                socket.disconnect();
+                log('🔌 Desconectando...');
+            } else {
+                log('⚠️ No hay conexión activa');
+            }
+        }
+
+        function testPing() {
+            if (socket && socket.connected) {
+                const data = { timestamp: Date.now(), message: 'ping test' };
+                socket.emit('ping', data);
+                log('🏓 Ping enviado: ' + JSON.stringify(data));
+            } else {
+                log('❌ No conectado - no se puede enviar ping');
+            }
+        }
+
+        function joinRoom() {
+            const room = document.getElementById('roomInput').value;
+            if (socket && socket.connected && room) {
+                socket.emit('join_room', room);
+                log('🏠 Solicitando unirse a sala: ' + room);
+            } else {
+                log('❌ No conectado o sala vacía');
+            }
+        }
+
+        function leaveRoom() {
+            const room = document.getElementById('roomInput').value;
+            if (socket && socket.connected && room) {
+                socket.emit('leave_room', room);
+                log('🚪 Solicitando salir de sala: ' + room);
+            } else {
+                log('❌ No conectado o sala vacía');
+            }
+        }
+
+        function sendMessage() {
+            const message = document.getElementById('messageInput').value;
+            if (socket && socket.connected && message) {
+                const data = {
+                    message: message,
+                    timestamp: Date.now(),
+                    from: socket.id
+                };
+                socket.emit('test_message', data);
+                log('📤 Mensaje enviado: ' + JSON.stringify(data));
+            } else {
+                log('❌ No conectado o mensaje vacío');
+            }
+        }
+
+        function clearLog() {
+            logDiv.innerHTML = '';
+        }
+
+        // Auto-conectar al cargar la página
+        window.onload = function() {
+            log('🚀 Página cargada - ChatBot Enterprise Socket.IO Test');
+            log('📍 Servidor: ' + window.location.origin);
+            connectSocket();
+        };
+    </script>
+</body>
+</html>
